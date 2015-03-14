@@ -6,9 +6,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.foodvote.model.Place;
+import com.foodvote.model.Room;
+import com.foodvote.model.User;
 import com.foodvote.yelp.YelpAPI;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
+
+import java.util.ArrayList;
+import java.util.List;
 //import com.footvote.foodvote.R;
 
 
@@ -18,10 +25,22 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        RecyclerView voteList = (RecyclerView) findViewById(R.id.vote_list);
+
+        //RecyclerView for list of rooms
+        RecyclerView roomRV = (RecyclerView) findViewById(R.id.vote_list);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
-        voteList.setLayoutManager(llm);
+        roomRV.setLayoutManager(llm);
+
+        //Testing value
+        Room r1 = new Room("room1");
+        Room r2 = new Room("room2", new ArrayList<Place>(), new ArrayList<User>(), true, new Place());
+        List<Room> roomList = new ArrayList<Room>();
+        roomList.add(r1);
+        roomList.add(r2);
+
+        RoomListAdapter rla = new RoomListAdapter(roomList);
+        roomRV.setAdapter(rla);
     }
 
 

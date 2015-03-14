@@ -31,4 +31,28 @@ public class Place {
         this.address = address;
         this.imageURL = imageURL;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public Map<String, String> getAddress() {
+        return address;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
 }
