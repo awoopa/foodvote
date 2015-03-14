@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:alignmentMode="alignBounds"
-    android:padding="16dp"
-    android:useDefaultMargins="true"
-     >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/from_label"
-        android:textColor="?android:textColorSecondary"
-        android:inputType="textEmailAddress|textNoSuggestions"/>
-
-    <AutoCompleteTextView
-        android:id="@+id/search"
+    <EditText android:id="@+id/nearby_places_edittext"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress|textNoSuggestions"
-        android:completionThreshold="3" />
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="10dip"
+        android:maxLines="1"
+        android:inputType="textAutoComplete" />
 
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/map"
+    <!-- Show on Map button -->
+    <Button android:id="@+id/btn_show_map"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.google.android.gms.maps.MapFragment"/>
-</GridLayout>
+        android:layout_height="wrap_content"
+        android:text="Show Places on Map"
+        android:layout_below="@+id/nearby_places_edittext"/>
+
+    />
+
+    <!--  List view -->
+    <ListView
+        android:id="@+id/place_list"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_show_map"/>
+
+
+
+</RelativeLayout>
