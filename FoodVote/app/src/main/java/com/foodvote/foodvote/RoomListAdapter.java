@@ -1,10 +1,12 @@
 package com.foodvote.foodvote;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.foodvote.model.Room;
 
@@ -25,7 +27,14 @@ public class RoomListAdapter extends RecyclerView.Adapter<RoomListAdapter.RoomLi
             name = (TextView) v.findViewById(R.id.voteName);
             status = (TextView) v.findViewById(R.id.voteStatus);
             result = (TextView) v.findViewById(R.id.voteResult);
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.d("RecyclerView", "onClick：" + getPosition());
+                }
+            });
         }
+
     }
 
     private List<Room> roomList;
