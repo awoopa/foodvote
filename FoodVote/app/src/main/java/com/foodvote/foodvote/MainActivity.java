@@ -1,4 +1,4 @@
-package com.footvote.foodvote;
+package com.foodvote.foodvote;
 
 import android.app.ListActivity;
 import android.support.v7.app.ActionBarActivity;
@@ -7,6 +7,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
+
+import com.footvote.foodvote.R;
 
 
 public class MainActivity extends ActionBarActivity {

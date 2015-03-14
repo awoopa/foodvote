@@ -1,4 +1,4 @@
-package com.footvote.foodvote.model;
+package com.foodvote.model;
 
 /**
  * Created by Mike Park on 14/03/2015.

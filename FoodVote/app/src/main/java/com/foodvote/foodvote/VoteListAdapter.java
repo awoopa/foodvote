@@ -1,8 +1,10 @@
-package com.footvote.foodvote;
+package com.foodvote.foodvote;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
+
+import com.footvote.foodvote.R;
 
 /**
  * Created by Mike Park on 14/03/2015.

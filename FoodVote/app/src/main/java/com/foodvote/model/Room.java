@@ -1,4 +1,4 @@
-package com.footvote.foodvote.model;
+package com.foodvote.model;
 
 import java.util.ArrayList;
 import java.util.List;
