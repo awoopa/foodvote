@@ -1,4 +1,4 @@
-package com.footvote.foodvote.model;
+package com.footvote.foodvote.google;
 
 public class GooglePlace {
     private String name;

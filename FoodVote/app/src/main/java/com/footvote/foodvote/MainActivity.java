@@ -50,6 +50,6 @@ public class MainActivity extends ActionBarActivity {
         s = yelpAPI.searchByBusinessId("coal-harbour-eye-centre-vancouver");
         System.out.println(s);
 
-        startActivity(new Intent(this, GooglePlacesAPI.class));
+        startActivity(new Intent(this, MapActivity.class));
     }
 }

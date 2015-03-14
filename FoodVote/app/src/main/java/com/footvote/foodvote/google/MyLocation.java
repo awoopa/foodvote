@@ -1,4 +1,4 @@
-package com.footvote.foodvote.model;
+package com.footvote.foodvote.google;
 
 /**
  * Created by NWHacks on 14/03/2015.

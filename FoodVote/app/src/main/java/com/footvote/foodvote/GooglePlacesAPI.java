@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
-import com.footvote.foodvote.model.GooglePlace;
-import com.footvote.foodvote.model.MyLocation;
+import com.footvote.foodvote.google.GooglePlace;
+import com.footvote.foodvote.google.MyLocation;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -36,6 +36,7 @@ public class GooglePlacesAPI extends ListActivity {
 
 	String latitude;
 	String longitude;
+    String searchTerm = "mcdonalds";
 
 	ArrayAdapter myAdapter;
 
@@ -71,10 +72,10 @@ public class GooglePlacesAPI extends ListActivity {
 		@Override
 		protected String doInBackground(View... urls) {
 			// make Call to the url
-			temp = makeCall("https://maps.googleapis.com/maps/api/place/search/json?location=" + latitude + "," + longitude + "&radius=100&sensor=true&key=" + GOOGLE_KEY);
+			temp = makeCall("https://maps.googleapis.com/maps/api/place/search/json?location=" + latitude + "," + longitude + "&radius=10000&keyword=" + searchTerm + "&sensor=true&key=" + GOOGLE_KEY);
 			
 			//print the call in the console
-			System.out.println("https://maps.googleapis.com/maps/api/place/search/json?location=" + latitude + "," + longitude + "&radius=100&sensor=true&key=" + GOOGLE_KEY);
+			System.out.println("https://maps.googleapis.com/maps/api/place/search/json?location=" + latitude + "," + longitude + "&radius=1\0000&keyword=" + searchTerm + "&sensor=true&key=" + GOOGLE_KEY);
 			return "";
 		}
 

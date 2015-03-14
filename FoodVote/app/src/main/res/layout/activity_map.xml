@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/map"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:name="com.google.android.gms.maps.MapFragment"/>
+    android:layout_height="wrap_content"
+    android:alignmentMode="alignBounds"
+    android:padding="16dp"
+    android:useDefaultMargins="true"
+     >
+
+    <TextView
+        android:id="@+id/from_label"
+        android:textColor="?android:textColorSecondary"
+        android:inputType="textEmailAddress|textNoSuggestions"/>
+
+    <AutoCompleteTextView
+        android:id="@+id/search"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress|textNoSuggestions"
+        android:completionThreshold="3" />
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="com.google.android.gms.maps.MapFragment"/>
+</GridLayout>
