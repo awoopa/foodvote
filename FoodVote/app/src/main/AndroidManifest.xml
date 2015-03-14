@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<<<<<<< HEAD
     package="com.footvote.foodvote" >
     <uses-library android:name="com.google.android.maps" />
+=======
+    package="com.foodvote.foodvote" >
+>>>>>>> 57ba3936f1ff1e7dfbb236649e34da964a254252
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -17,7 +21,7 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/Theme.AppCompat" >
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
@@ -31,7 +35,6 @@
             android:name=".MapActivity"
             android:label="@string/title_activity_map" >
         </activity>
-
         <activity
             android:name=".SinglePlaceActivity"
             android:label="@string/title_activity_single_place" >
@@ -43,6 +46,14 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyC_ta35eIv2p7z-EAo8y64oBd0K0Jh2VvQ" />
+<<<<<<< HEAD
+=======
+
+        <activity
+            android:name=".LobbyActivity"
+            android:label="@string/title_activity_lobby" >
+        </activity>
+>>>>>>> 57ba3936f1ff1e7dfbb236649e34da964a254252
     </application>
 
 </manifest>
