@@ -1,6 +1,5 @@
 package com.foodvote.foodvote;
 
-import android.support.v7.widget.Rec
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -9,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.foodvote.model.Room;
-import com.footvote.foodvote.R;
 
 import java.util.List;
 

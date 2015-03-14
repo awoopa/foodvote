@@ -1,11 +1,10 @@
 package com.foodvote.foodvote;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.foodvote.foodvote.R;
 
 public class LobbyActivity extends ActionBarActivity {
 
@@ -23,22 +22,7 @@ public class LobbyActivity extends ActionBarActivity {
         return true;
     }
 
-<<<<<<< HEAD
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-
-        // Handle action bar item clicks here. The action bar will
-
-        // automatically handle clicks on the Home/Up button, so long
-
-        // as you specify a parent activity in AndroidManifest.xml.
-
-        int id = item.getItemId();
-
-
-=======
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -46,7 +30,6 @@ public class LobbyActivity extends ActionBarActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
->>>>>>> 57ba3936f1ff1e7dfbb236649e34da964a254252
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;

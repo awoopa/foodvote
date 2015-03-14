@@ -1,4 +1,4 @@
-package com.foodvote.foodvote.google;
+package com.foodvote.google;
 
 /**
  * Created by NWHacks on 14/03/2015.
@@ -8,7 +8,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 
-import com.footvote.foodvote.R;
+import com.foodvote.foodvote.R;
 
 public class AlertDialogManager {
     /**

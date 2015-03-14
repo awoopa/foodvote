@@ -1,4 +1,4 @@
-package com.foodvote.foodvote.google;
+package com.foodvote.google;
 
 /**
  * Created by NWHacks on 14/03/2015.
@@ -17,7 +17,7 @@ public class PlaceDetails implements Serializable {
     public String status;
 
     @Key
-    public Place result;
+    public com.foodvote.google.Place result;
 
     @Override
     public String toString() {

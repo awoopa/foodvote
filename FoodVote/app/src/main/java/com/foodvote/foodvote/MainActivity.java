@@ -1,27 +1,21 @@
 package com.foodvote.foodvote;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-<<<<<<< HEAD:FoodVote/app/src/main/java/com/foodvote/foodvote/MainActivity.java
-import com.footvote.foodvote.R;
-import com.footvote.foodvote.yelp.YelpAPI;
-=======
 import com.foodvote.model.Place;
 import com.foodvote.model.Room;
 import com.foodvote.model.User;
 import com.foodvote.yelp.YelpAPI;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.LinearLayoutManager;
 
 import java.util.ArrayList;
 import java.util.List;
-//import com.footvote.foodvote.R;
->>>>>>> 57ba3936f1ff1e7dfbb236649e34da964a254252:FoodVote/app/src/main/java/com/foodvote/foodvote/MainActivity.java
 
 
 public class MainActivity extends ActionBarActivity {

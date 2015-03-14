@@ -9,11 +9,10 @@ import android.text.Html;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.footvote.foodvote.R;
-import com.foodvote.foodvote.google.AlertDialogManager;
-import com.foodvote.foodvote.google.ConnectionDetector;
-import com.foodvote.foodvote.google.GooglePlaces;
-import com.foodvote.foodvote.google.PlaceDetails;
+import com.foodvote.google.AlertDialogManager;
+import com.foodvote.google.ConnectionDetector;
+import com.foodvote.google.GooglePlaces;
+import com.foodvote.google.PlaceDetails;
 
 public class SinglePlaceActivity extends Activity {
     // flag for Internet connection status
