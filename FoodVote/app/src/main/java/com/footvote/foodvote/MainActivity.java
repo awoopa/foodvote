@@ -1,11 +1,12 @@
 package com.footvote.foodvote;
 
-import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.footvote.foodvote.model.YelpAPI;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -40,6 +41,14 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void openMap(View v) {
-        startActivity(new Intent(this, MapActivity.class));
+        YelpAPI yelpAPI = new YelpAPI();
+
+        String s = yelpAPI.searchForBusinessesByLocation("test", "Vancouver");
+        System.out.println(s);
+
+        s = yelpAPI.searchByBusinessId("coal-harbour-eye-centre-vancouver");
+        System.out.println(s);
+
+        //startActivity(new Intent(this, MapActivity.class));
     }
 }
