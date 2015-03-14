@@ -2,6 +2,7 @@ package com.foodvote.foodvote;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -26,8 +27,10 @@ public class SuggestActivity extends ActionBarActivity {
 
         SearchManager searchManager =
                 (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        MenuItem searchItem = menu.findItem(R.id.search);
         SearchView searchView =
-                (SearchView) menu.findItem(R.id.search).getActionView();
+                //(SearchView) menu.findItem(R.id.search).getActionView();
+                (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setSearchableInfo(
                 searchManager.getSearchableInfo(getComponentName()));
 
