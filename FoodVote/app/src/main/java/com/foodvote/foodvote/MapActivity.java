@@ -5,7 +5,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.text.Html;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
@@ -29,15 +30,6 @@ import java.util.HashMap;
 
 
 public class MapActivity extends ActionBarActivity {
-
-    private static final String LOG_TAG = "ExampleApp";
-
-    private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
-    private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
-    private static final String OUT_JSON = "/json";
-
-    private static final String API_KEY = "AIzaSyC_ta35eIv2p7z-EAo8y64oBd0K0Jh2VvQ";
-
     // flag for Internet connection status
     private Boolean isInternetPresent = false;
 
@@ -112,10 +104,30 @@ public class MapActivity extends ActionBarActivity {
         // button show on map
         btnShowOnMap = (Button) findViewById(R.id.btn_show_map);
 
+        EditText nearbyPlaces = (EditText) findViewById(R.id.nearby_places_edittext);
 
         // calling background Async task to load Google Places
         // After getting places from Google all the data is shown in listview
-        new LoadPlaces().execute();
+        new LoadPlaces().execute("");
+
+        nearbyPlaces.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                new LoadPlaces().execute(s.toString());
+            }
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count,
+                                          int after) {
+                // TODO Auto-generated method stub
+            }
+            @Override
+            public void afterTextChanged(Editable s) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+
 
         /** Button click event for shown on map */
         btnShowOnMap.setOnClickListener(new View.OnClickListener() {
@@ -133,15 +145,17 @@ public class MapActivity extends ActionBarActivity {
 //                // staring activity
 //                startActivity(i);
 
-                GooglePlaces places = new GooglePlaces();
+//                GooglePlaces places = new GooglePlaces();
                 EditText et = (EditText) findViewById(R.id.nearby_places_edittext);
-                try {
-                    places.search(gps.getLatitude(), gps.getLongitude(), 10000, et.getText().toString());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+//                try {
+//                    places.search(gps.getLatitude(), gps.getLongitude(), 10000, et.getText().toString());
+//                } catch (Exception e) {
+//                    e.printStackTrace();
+//                }
 
-                new LoadPlaces().execute();
+//                System.out.println("line draw");
+
+                new LoadPlaces().execute(et.getText().toString());
 
             }
         });
@@ -182,11 +196,11 @@ public class MapActivity extends ActionBarActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            pDialog = new ProgressDialog(MapActivity.this);
-            pDialog.setMessage(Html.fromHtml("<b>Search</b><br/>Loading Places..."));
-            pDialog.setIndeterminate(false);
-            pDialog.setCancelable(false);
-            pDialog.show();
+//            pDialog = new ProgressDialog(MapActivity.this);
+//            pDialog.setMessage(Html.fromHtml("<b>Search</b><br/>Loading Places..."));
+//            pDialog.setIndeterminate(false);
+//            pDialog.setCancelable(false);
+//            pDialog.show();
         }
 
         /**
@@ -201,14 +215,17 @@ public class MapActivity extends ActionBarActivity {
                 // If you want all types places make it as null
                 // Check list of types supported by google
                 //
-                String types = "cafe|restaurant"; // Listing places only cafes, restaurants
+                String types = args[0]; // Listing places only cafes, restaurants
 
                 // Radius in meters - increase this value if you don't find any places
-                double radius = 1000; // 1000 meters
+                double radius = 100000; // 10000 meters
 
                 // get nearest places
+                if (types == "")
+                   types = "restaurants|cafes";
+
                 nearPlaces = googlePlaces.search(gps.getLatitude(),
-                        gps.getLongitude(), radius, types);
+                    gps.getLongitude(), radius, types);
 
 
             } catch (Exception e) {
@@ -225,7 +242,7 @@ public class MapActivity extends ActionBarActivity {
          * **/
         protected void onPostExecute(String file_url) {
             // dismiss the dialog after getting all products
-            pDialog.dismiss();
+            // pDialog.dismiss();
             // updating UI from Background Thread
             runOnUiThread(new Runnable() {
                 public void run() {
@@ -240,6 +257,8 @@ public class MapActivity extends ActionBarActivity {
                     if(status.equals("OK")){
                         // Successfully got places details
                         if (nearPlaces.results != null) {
+                            placesListItems.clear();
+
                             // loop through each place
                             for (Place p : nearPlaces.results) {
                                 HashMap<String, String> map = new HashMap<String, String>();
@@ -250,7 +269,6 @@ public class MapActivity extends ActionBarActivity {
 
                                 // Place name
                                 map.put(KEY_NAME, p.name);
-
 
                                 // adding HashMap to ArrayList
                                 placesListItems.add(map);
@@ -267,9 +285,9 @@ public class MapActivity extends ActionBarActivity {
                     }
                     else if(status.equals("ZERO_RESULTS")){
                         // Zero results found
-                        alert.showAlertDialog(MapActivity.this, "Near Places",
-                                "Sorry no places found. Try to change the types of places",
-                                false);
+//                        alert.showAlertDialog(MapActivity.this, "Near Places",
+//                                "Sorry no places found. Try to change the types of places",
+//                                false);
                     }
                     else if(status.equals("UNKNOWN_ERROR"))
                     {

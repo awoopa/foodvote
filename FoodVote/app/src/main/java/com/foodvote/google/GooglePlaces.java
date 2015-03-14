@@ -25,7 +25,7 @@ public class GooglePlaces {
     private static final HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
 
     // Google API Key
-    private static final String API_KEY = "AIzaSyCRLa4LQZWNQBcjCYcIVYA45i9i8zfClqc";
+    private static final String API_KEY = "AIzaSyC_ta35eIv2p7z-EAo8y64oBd0K0Jh2VvQ";
 
     // Google Places serach url's
     private static final String PLACES_SEARCH_URL = "https://maps.googleapis.com/maps/api/place/search/json?";
@@ -56,14 +56,12 @@ public class GooglePlaces {
             HttpRequestFactory httpRequestFactory = createRequestFactory(HTTP_TRANSPORT);
             HttpRequest request = httpRequestFactory
                     .buildGetRequest(new GenericUrl(PLACES_SEARCH_URL));
+            if(types != null && types != "")
+                request.getUrl().put("keyword", types);
             request.getUrl().put("key", API_KEY);
             request.getUrl().put("location", _latitude + "," + _longitude);
             request.getUrl().put("radius", _radius); // in meters
             request.getUrl().put("sensor", "false");
-            if(types != null)
-                request.getUrl().put("types", types);
-
-            System.out.println(request.getUrl());
 
             PlacesList list = request.execute().parseAs(PlacesList.class);
             // Check log cat for places response status
