@@ -1,4 +1,4 @@
-package com.footvote.foodvote;
+package com.foodvote.foodvote;
 
 import android.app.ListActivity;
 import android.location.Location;
@@ -7,8 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 
-import com.footvote.foodvote.google.GooglePlace;
-import com.footvote.foodvote.google.MyLocation;
+import com.foodvote.google.GooglePlace;
+import com.foodvote.google.MyLocation;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

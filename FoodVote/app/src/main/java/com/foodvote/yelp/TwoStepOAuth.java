@@ -1,4 +1,4 @@
-package com.footvote.foodvote.yelp;
+package com.foodvote.yelp;
 
 import org.scribe.builder.api.DefaultApi10a;
 import org.scribe.model.Token;

@@ -1,4 +1,4 @@
-package com.footvote.foodvote.google;
+package com.foodvote.google;
 
 /**
  * Created by NWHacks on 14/03/2015.

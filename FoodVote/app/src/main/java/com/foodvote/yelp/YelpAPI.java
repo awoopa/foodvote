@@ -1,4 +1,4 @@
-package com.footvote.foodvote.yelp;
+package com.foodvote.yelp;
 
 import android.os.AsyncTask;
 

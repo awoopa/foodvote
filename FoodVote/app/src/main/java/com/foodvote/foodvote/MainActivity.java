@@ -1,13 +1,15 @@
-package com.footvote.foodvote;
+package com.foodvote.foodvote;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-
-import com.footvote.foodvote.yelp.YelpAPI;
+import com.foodvote.yelp.YelpAPI;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.LinearLayoutManager;
+//import com.footvote.foodvote.R;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -16,6 +18,10 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        RecyclerView voteList = (RecyclerView) findViewById(R.id.vote_list);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        voteList.setLayoutManager(llm);
     }
 
 
