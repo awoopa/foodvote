@@ -1,4 +1,4 @@
-package com.footvote.foodvote;
+package com.foodvote.foodvote;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.footvote.foodvote.R;
 import com.footvote.foodvote.yelp.YelpAPI;
 
 

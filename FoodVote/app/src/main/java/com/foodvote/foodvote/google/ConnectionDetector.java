@@ -1,4 +1,4 @@
-package com.footvote.foodvote.google;
+package com.foodvote.foodvote.google;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

@@ -1,7 +1,10 @@
-package com.footvote.foodvote;
+package com.foodvote.foodvote;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import com.footvote.foodvote.R;
+
 /**
  * Created by NWHacks on 14/03/2015.
  */

@@ -1,4 +1,4 @@
-package com.footvote.foodvote;
+package com.foodvote.foodvote;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -9,10 +9,11 @@ import android.text.Html;
 import android.util.Log;
 import android.widget.TextView;
 
-import com.footvote.foodvote.google.AlertDialogManager;
-import com.footvote.foodvote.google.ConnectionDetector;
-import com.footvote.foodvote.google.GooglePlaces;
-import com.footvote.foodvote.google.PlaceDetails;
+import com.footvote.foodvote.R;
+import com.foodvote.foodvote.google.AlertDialogManager;
+import com.foodvote.foodvote.google.ConnectionDetector;
+import com.foodvote.foodvote.google.GooglePlaces;
+import com.foodvote.foodvote.google.PlaceDetails;
 
 public class SinglePlaceActivity extends Activity {
     // flag for Internet connection status
