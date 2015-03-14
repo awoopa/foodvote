@@ -46,6 +46,10 @@
             android:name=".LobbyActivity"
             android:label="@string/title_activity_lobby" >
         </activity>
+        <activity
+            android:name=".SuggestActivity"
+            android:label="@string/title_activity_suggest" >
+        </activity>
     </application>
 
 </manifest>

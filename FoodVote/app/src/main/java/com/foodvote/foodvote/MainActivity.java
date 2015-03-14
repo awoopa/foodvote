@@ -77,4 +77,12 @@ public class MainActivity extends ActionBarActivity {
 
         startActivity(new Intent(this, MapActivity.class));
     }
+
+    public void openLobby(View v) {
+        startActivity(new Intent(this, LobbyActivity.class));
+    }
+
+    public void openSuggest(View v) {
+        startActivity(new Intent(this, SuggestActivity.class));
+    }
 }
