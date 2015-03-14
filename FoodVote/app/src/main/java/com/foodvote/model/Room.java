@@ -29,4 +29,23 @@ public class Room {
         this.chosenPlace = chosenPlace;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public List<Place> getPlaces() {
+        return places;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public Boolean getCompleted() {
+        return completed;
+    }
+
+    public Place getChosenPlace() {
+        return chosenPlace;
+    }
 }

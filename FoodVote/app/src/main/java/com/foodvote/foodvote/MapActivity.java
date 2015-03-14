@@ -37,9 +37,9 @@ public class MapActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(com.footvote.foodvote.R.layout.activity_map);
+        setContentView(R.layout.activity_map);
 
-        AutoCompleteTextView search = (AutoCompleteTextView) findViewById(com.footvote.foodvote.R.id.search);
+        AutoCompleteTextView search = (AutoCompleteTextView) findViewById(R.id.search);
 
         search.setText("Fisherman's Wharf, San Francisco, CA, United States");
 
@@ -50,7 +50,7 @@ public class MapActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(com.footvote.foodvote.R.menu.menu_map, menu);
+        getMenuInflater().inflate(R.menu.menu_map, menu);
         return true;
     }
 
@@ -62,7 +62,7 @@ public class MapActivity extends ActionBarActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == com.footvote.foodvote.R.id.action_settings) {
+        if (id == R.id.action_settings) {
             return true;
         }
 
