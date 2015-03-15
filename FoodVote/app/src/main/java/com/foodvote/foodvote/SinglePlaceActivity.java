@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 import com.foodvote.google.AlertDialogManager;
@@ -43,6 +45,8 @@ public class SinglePlaceActivity extends ActionBarActivity {
 
     private LatLng latlng;
 
+    private LatLng latlong;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,6 +71,7 @@ public class SinglePlaceActivity extends ActionBarActivity {
                     false);
         }
 
+
         Intent i = getIntent();
 
         // Place referece id
@@ -76,6 +81,21 @@ public class SinglePlaceActivity extends ActionBarActivity {
         new LoadSinglePlaceDetails().execute(reference);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_single_place, menu);
+        return true;
+    }
+
+    public void openRadiusActivity(MenuItem menu) {
+        if (latlong != null) {
+            Intent i = new Intent(this, RadiusActivity.class);
+            i.putExtra("lat", latlong.latitude);
+            i.putExtra("lon", latlong.longitude);
+            startActivity(i);
+        }
+    }
 
     /**
      * Background Async Task to Load Google places
@@ -138,7 +158,8 @@ public class SinglePlaceActivity extends ActionBarActivity {
                                 View mapView = getSupportFragmentManager().findFragmentById(R.id.map).getView();
 
                                 MarkerOptions a = new MarkerOptions().position(ltln);
-                                Marker m = map.addMarker(a);
+                                final Marker m = map.addMarker(a);
+                                latlong = m.getPosition();
                                 m.setDraggable(true);
 
                                 map.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
@@ -152,6 +173,7 @@ public class SinglePlaceActivity extends ActionBarActivity {
                                     public void onMarkerDragEnd(Marker arg0) {
                                         // TODO Auto-generated method stub
                                         map.animateCamera(CameraUpdateFactory.newLatLng(arg0.getPosition()));
+                                        latlong = m.getPosition();
                                     }
                                     int count = 0;
                                     @Override
@@ -162,7 +184,6 @@ public class SinglePlaceActivity extends ActionBarActivity {
 
 
                                 map.animateCamera(CameraUpdateFactory.newLatLngZoom(m.getPosition(), 14));
-
 //                                MarkerOptions a = new MarkerOptions().position(latlng);
 //                                MarkerOptions b = new MarkerOptions().position(ltln);
 //                                Marker m = map.addMarker(a);

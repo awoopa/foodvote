@@ -114,6 +114,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.foodvote.foodvote.MainActivity" />
         </activity>
+        <activity
+            android:name=".RadiusActivity"
+            android:label="@string/title_activity_radius" >
+        </activity>
     </application>
 
 </manifest>
