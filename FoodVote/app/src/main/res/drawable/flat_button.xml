@@ -5,6 +5,8 @@
         android:state_enabled="false">
         <shape>
             <solid android:color="#ddd"></solid>
+            <corners android:radius="6dip"/>
+            <padding android:left="0dip" android:top="0dip" android:right="0dip" android:bottom="0dip" />
         </shape>
 
         </item>
@@ -13,6 +15,8 @@
         android:state_enabled="true" >
         <shape>
             <solid android:color="#ddd"></solid>
+            <corners android:radius="6dip"/>
+            <padding android:left="0dip" android:top="0dip" android:right="0dip" android:bottom="0dip" />
         </shape>
 
     </item>
@@ -21,6 +25,8 @@
         android:state_enabled="true">
         <shape>
             <solid android:color="#ddd"></solid>
+            <corners android:radius="6dip"/>
+            <padding android:left="0dip" android:top="0dip" android:right="0dip" android:bottom="0dip" />
         </shape>
 
     </item>
@@ -28,6 +34,8 @@
         android:state_enabled="true">
         <shape>
             <solid android:color="#fff"></solid>
+            <corners android:radius="6dip"/>
+            <padding android:left="0dip" android:top="0dip" android:right="0dip" android:bottom="0dip" />
         </shape>
 
     </item>
