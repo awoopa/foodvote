@@ -60,15 +60,7 @@ public class RadiusActivity extends ActionBarActivity {
 
         GPSTracker gps = new GPSTracker(this);
         AlertDialogManager alert = new AlertDialogManager();
-        LatLng location = new LatLng(49, -123);
-
-        if (gps.canGetLocation()) {
-            location = new LatLng(gps.getLatitude(), gps.getLongitude());
-        } else {
-            alert.showAlertDialog(this, "GPS Status",
-                    "Couldn't get location information. Please enable GPS",
-                    false);
-        }
+        LatLng location = new LatLng(lat, lon);
 
         YelpAPI yelp = new YelpAPI();
         String queryResults = yelp.searchForBusinessesByLocation("", location);
