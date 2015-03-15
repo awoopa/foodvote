@@ -48,7 +48,7 @@ public class YelpSearchActivity extends ActionBarActivity {
         Intent openMainActivity = new Intent(this, SuggestActivity.class);
         openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
         startActivity(openMainActivity);
-
+        finish();
     }
 
     @Override

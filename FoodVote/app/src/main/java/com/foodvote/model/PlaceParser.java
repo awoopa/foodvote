@@ -31,6 +31,7 @@ public class PlaceParser {
 
     public void parse(String input) {
         manager = PlaceManager.getInstance();
+        manager.clear();
         try {
             JSONObject obj = new JSONObject(input);
             JSONArray businesses = obj.getJSONArray("businesses");
