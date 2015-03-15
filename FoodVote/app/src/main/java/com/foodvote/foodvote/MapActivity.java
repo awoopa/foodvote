@@ -71,6 +71,7 @@ public class MapActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+
         cd = new ConnectionDetector(getApplicationContext());
 
         // Check if Internet present
@@ -113,7 +114,7 @@ public class MapActivity extends ActionBarActivity {
         nearbyPlaces.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (count > 2 && count < 14)
+                if (count > 2 && count < 32)
                     new LoadPlaces().execute(s.toString());
             }
             @Override
@@ -215,10 +216,11 @@ public class MapActivity extends ActionBarActivity {
 
                 // get nearest places
                 if (types == "")
-                   types = "restaurants|cafes";
-
-                nearPlaces = googlePlaces.search(gps.getLatitude(),
-                    gps.getLongitude(), radius, types);
+                    nearPlaces = googlePlaces.search(gps.getLatitude(),
+                            gps.getLongitude(), radius, null);
+                else
+                    nearPlaces = googlePlaces.search(gps.getLatitude(),
+                            gps.getLongitude(), radius, types);
 
 
             } catch (Exception e) {
