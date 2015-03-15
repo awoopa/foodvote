@@ -21,13 +21,13 @@ import com.foodvote.socket.SocketIO;
 
 public class LobbyActivity extends ActionBarActivity {
 
-    List<User> userList = new ArrayList<User>();
-    UserListAdapter ula = new UserListAdapter(userList);
+    List<User> userList;
+    UserListAdapter ula;
 
     Button startButton;
 
-    Intent intent = getIntent();
-    Boolean isCreator = intent.getBooleanExtra("isCreator", false);
+    Intent intent;
+    Boolean isCreator;
 
     SocketIO socket;
 
@@ -38,6 +38,21 @@ public class LobbyActivity extends ActionBarActivity {
 
         // create socket and listener
         socket = SocketIO.getInstance();
+
+
+        userList = new ArrayList<User>();
+        userList.add(new User("",""));
+        userList.add(new User("",""));
+        ula = new UserListAdapter(userList);
+
+        intent = getIntent();
+        isCreator = intent.getBooleanExtra("isCreator", false);
+
+        startButton = (Button) findViewById(R.id.start_button);
+
+        // create socket and listener
+        socket = SocketIO.getInstance();
+
 
         // enable button only if creator
         if (isCreator) {
