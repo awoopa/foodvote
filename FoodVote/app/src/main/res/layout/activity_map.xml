@@ -10,6 +10,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="10dip"
         android:maxLines="1"
+        android:completionThreshold="3"
         android:inputType="textAutoComplete" />
 
     <!-- Show on Map button -->

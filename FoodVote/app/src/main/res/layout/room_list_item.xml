@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:background="?android:attr/selectableItemBackground">
+    android:background="?android:attr/selectableItemBackground"
+    android:paddingTop="8dp">
 
     <TextView
         android:layout_width="fill_parent"
@@ -11,8 +12,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:padding="5dp"
-        android:password="false" />
+        android:password="false"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -22,7 +24,7 @@
         android:layout_below="@+id/voteName"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:padding="5dp" />
+        android:paddingLeft="16dp" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -32,5 +34,5 @@
         android:layout_below="@+id/voteStatus"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:padding="5dp" />
+        android:paddingLeft="16dp" />
 </RelativeLayout>
