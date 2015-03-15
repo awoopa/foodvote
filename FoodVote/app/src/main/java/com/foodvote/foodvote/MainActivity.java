@@ -1,8 +1,8 @@
 package com.foodvote.foodvote;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -12,8 +12,6 @@ import android.view.View;
 import com.foodvote.model.Place;
 import com.foodvote.model.Room;
 import com.foodvote.model.User;
-import com.foodvote.yelp.YelpAPI;
-import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -76,12 +74,6 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void openMap(View v) {
-        YelpAPI yelpAPI = new YelpAPI();
-
-        String s = yelpAPI.searchForBusinessesByLocation("test", new LatLng(49, -123));
-
-        s = yelpAPI.searchByBusinessId("coal-harbour-eye-centre-vancouver");
-
         startActivity(new Intent(this, MapActivity.class));
     }
 

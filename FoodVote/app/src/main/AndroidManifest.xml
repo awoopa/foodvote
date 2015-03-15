@@ -48,17 +48,16 @@
             android:name=".LobbyActivity"
             android:label="@string/title_activity_lobby" >
         </activity>
-        <activity android:name=".SuggestActivity"
-            android:label="SuggestActivity">
+        <activity
+            android:name=".SuggestActivity"
+            android:label="SuggestActivity" >
             <meta-data
                 android:name="android.app.default_searchable"
-                android:value=".YelpSearchActivity"/>
+                android:value=".YelpSearchActivity" />
         </activity>
         <activity
             android:name=".MapViewActivity"
             android:label="@string/title_activity_map_view" >
-
-
         </activity>
         <activity
             android:name=".YelpSearchActivity"
@@ -76,6 +75,10 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".ResultsActivity"
+            android:label="@string/title_activity_results" >
         </activity>
     </application>
 
