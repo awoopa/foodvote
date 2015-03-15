@@ -1,7 +1,7 @@
 package com.foodvote.foodvote;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -22,6 +22,7 @@ public class LobbyActivity extends ActionBarActivity {
 
         //RecyclerView for list of users
         RecyclerView userRV = (RecyclerView) findViewById(R.id.user_list);
+        userRV.addItemDecoration(new SimpleDividerItemDecoration(getApplicationContext()));         //divider
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         userRV.setLayoutManager(llm);
@@ -46,6 +47,7 @@ public class LobbyActivity extends ActionBarActivity {
         getMenuInflater().inflate(R.menu.menu_lobby, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

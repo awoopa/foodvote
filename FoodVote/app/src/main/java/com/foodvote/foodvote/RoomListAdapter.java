@@ -1,12 +1,13 @@
 package com.foodvote.foodvote;
 
+import android.content.ContextWrapper;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.foodvote.model.Room;
 
@@ -33,6 +34,10 @@ public class RoomListAdapter extends RecyclerView.Adapter<RoomListAdapter.RoomLi
                     Log.d("RecyclerView", "onClick：" + getPosition());
                 }
             });
+            //Custom font for the room names
+            TextView txt = (TextView) v.findViewById(R.id.voteName);
+            Typeface font = Typeface.createFromAsset(v.getContext().getAssets(), "RobotoSlab-Regular.ttf");
+            txt.setTypeface(font);
         }
 
     }
