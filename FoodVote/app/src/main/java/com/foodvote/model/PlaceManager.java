@@ -33,4 +33,12 @@ public class PlaceManager {
     public void clear() {
         places = new ArrayList<Place>();
     }
+
+    public Place findPlaceById(String id) {
+        for (Place p : places) {
+            if (p.getId().equals(id))
+                return p;
+        }
+        throw new RuntimeException("No Places found in PlaceManager using id " + id);
+    }
 }
