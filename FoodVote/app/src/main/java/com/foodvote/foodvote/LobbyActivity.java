@@ -8,17 +8,35 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.foodvote.foodvote.R;
+import com.foodvote.model.Room;
 import com.foodvote.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.foodvote.socket.SocketIO;
+
 public class LobbyActivity extends ActionBarActivity {
+
+    List<User> userList = new ArrayList<User>();
+    UserListAdapter ula = new UserListAdapter(userList);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby);
+
+        // create socket and listener
+        SocketIO socket = SocketIO.getInstance();
+        socket.connect();
+
+        socket.onUserJoinedRoom(this, new SocketIO.OnUserJoinedRoomListener() {
+            @Override
+            public void onUserJoinedRoom(User new_user, List<User> users) {
+                ula.replaceAll(users);
+            }
+        });
 
         //RecyclerView for list of users
         RecyclerView userRV = (RecyclerView) findViewById(R.id.user_list);
@@ -28,15 +46,15 @@ public class LobbyActivity extends ActionBarActivity {
         userRV.setLayoutManager(llm);
 
         //Testing values
-        User u1 = new User("user 1", 1);
+        /*User u1 = new User("user 1", 1);
         User u2 = new User("user 2", 2);
         User u3 = new User("user 3", 3);
         List<User> userList = new ArrayList<User>();
         userList.add(u1);
         userList.add(u2);
-        userList.add(u3);
-
-        UserListAdapter ula = new UserListAdapter(userList);
+        userList.add(u3);*/
+/*
+        UserListAdapter ula = new UserListAdapter(userList);*/
         userRV.setAdapter(ula);
     }
 
