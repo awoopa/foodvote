@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.foodvote.foodvote.R;
+import com.foodvote.model.PlaceManager;
+import com.foodvote.model.PlaceParser;
 import com.foodvote.model.Room;
 import com.foodvote.model.User;
 
@@ -72,7 +74,9 @@ public class LobbyActivity extends ActionBarActivity {
 
         socket.onVotingStart(this, new SocketIO.OnVotingStartListener() {
            @Override
-            public void onVotingStart(Room room) {
+            public void onVotingStart(Room room, String yelpResults) {
+               PlaceParser pp = new PlaceParser();
+               pp.parse(yelpResults);
                startVoteActivity();
            }
         });

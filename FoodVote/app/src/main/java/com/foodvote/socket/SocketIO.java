@@ -74,7 +74,7 @@ public class SocketIO {
     }
 
     public void creatorSetup(String roomName, int radius, double centerLat, double centerLon,
-                             Date time, List<String> yelpIDs) {
+                             Date time, List<String> yelpIDs, String yelpResults) {
         if (TextUtils.isEmpty(roomName))
             return;
         Log.i("SocketIO", "Trying to emit: 'creator setup'");
@@ -90,6 +90,7 @@ public class SocketIO {
             creatorSetupObject.put("time", time.getTime());
             if (!yelpIDs.isEmpty())
                 creatorSetupObject.put("options", new JSONArray(yelpIDs));
+            creatorSetupObject.put("yelpResults", yelpResults);
 
         } catch (JSONException e) {
             throw new RuntimeException(e);
@@ -269,10 +270,16 @@ public class SocketIO {
             @Override
             public void call(Object... args) {
                 Log.i("SocketIO", "Receive message: voting start");
-                // data would be a Room.
+                // data is object, room and string of yelp results
+
+                JSONObject data = (JSONObject) args[0];
                 final Room r;
+                final String yelpResults;
                 try {
-                    r = parseRoomFromJSON(((JSONObject) args[0]).getJSONObject("room"));
+                    JSONObject roomObject = data.getJSONObject("room");
+                    r = parseRoomFromJSON(data.getJSONObject("room"));
+                    yelpResults = data.getString("yelpResults");
+
                 } catch (JSONException e) {
                     throw new RuntimeException(e.getMessage());
                 }
@@ -280,7 +287,7 @@ public class SocketIO {
 
                     @Override
                     public void run() {
-                        listener.onVotingStart(r);
+                        listener.onVotingStart(r, yelpResults);
                     }
                 });
             }
@@ -482,7 +489,7 @@ public class SocketIO {
         public void onRoomCreated(Room r);
     }
     public interface OnVotingStartListener {
-        public void onVotingStart(Room r);
+        public void onVotingStart(Room r, String yelpResults);
     }
     public interface OnNewRoundListener {
         public void onNewRound(int roundNum, Round currentRound);

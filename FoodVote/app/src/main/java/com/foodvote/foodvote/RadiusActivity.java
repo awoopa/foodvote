@@ -39,6 +39,8 @@ public class RadiusActivity extends ActionBarActivity {
     Double lat;
     Double lon;
 
+    String yelpResults;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +74,7 @@ public class RadiusActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 onDoneButton();
-                socket.creatorSetup(name, radius, lat, lon, new Date(), idArray);
+                socket.creatorSetup(name, radius, lat, lon, new Date(), idArray, yelpResults);
             }
         });
     }
@@ -119,6 +121,7 @@ public class RadiusActivity extends ActionBarActivity {
         System.out.println(queryResults);
         PlaceParser parser = new PlaceParser();
         parser.parse(queryResults);
+        yelpResults = queryResults;
         this.pm = PlaceManager.getInstance();
         idArray = new ArrayList<String>();
         for (int i=0; i<pm.getSize(); i++) {
