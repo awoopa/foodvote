@@ -1,5 +1,6 @@
 package com.foodvote.foodvote;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,10 +10,17 @@ import com.foodvote.foodvote.R;
 
 public class WinnerActivity extends ActionBarActivity {
 
+    Intent intent;
+
+    String result;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winner);
+
+        intent = getIntent();
+        result = intent.getStringExtra("result");
     }
 
 
