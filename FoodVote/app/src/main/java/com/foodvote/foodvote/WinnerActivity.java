@@ -45,10 +45,20 @@ public class WinnerActivity extends ActionBarActivity {
 
         final Place winner = pm.findPlaceById(result);
 
-        TextView tv = (TextView) findViewById(R.id.header);
+        TextView tv = (TextView) findViewById(R.id.res_name);
         tv.setText(winner.getName());
 
-        Button fab = (Button) findViewById(R.id.fab);
+        TextView phone = (TextView) findViewById(R.id.res_phone);
+        phone.setText(winner.getDisplayPhone());
+
+        TextView address = (TextView) findViewById(R.id.res_address);
+        String addStr = "";
+        for (String str : winner.getDisplayAddress()) {
+            addStr = addStr + str + ", ";
+        }
+        address.setText(addStr);
+
+        Button fab = (Button) findViewById(R.id.buttonFloat);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
