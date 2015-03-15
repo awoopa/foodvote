@@ -76,7 +76,7 @@ public class VoteActivity extends ActionBarActivity {
         socket.onUserVoted(this, new SocketIO.OnUserVotedListener() {
             @Override
             public void onUserVoted(User user, Round round) {
-                // TODO; that
+                Log.d("User Voted", user.getName());
             }
         });
 
