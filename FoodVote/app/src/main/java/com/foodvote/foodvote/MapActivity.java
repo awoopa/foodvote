@@ -143,6 +143,8 @@ public class MapActivity extends ActionBarActivity {
                     // Sending place refrence id to single place activity
                     // place refrence id used to get "Place full details"
                     in.putExtra(KEY_REFERENCE, reference);
+                    in.putExtra("name", (String) getIntent().getStringExtra("name"));
+                    Log.d((String) getIntent().getExtras().get("name"), "");
                     startActivity(in);
                     finish();
                     return true;
@@ -172,6 +174,9 @@ public class MapActivity extends ActionBarActivity {
                 // Sending place refrence id to single place activity
                 // place refrence id used to get "Place full details"
                 in.putExtra(KEY_REFERENCE, reference);
+                in.putExtra("name", (String) getIntent().getStringExtra("name"));
+                System.out.println((String) getIntent().getStringExtra("name"));
+
                 startActivity(in);
                 finish();
             }

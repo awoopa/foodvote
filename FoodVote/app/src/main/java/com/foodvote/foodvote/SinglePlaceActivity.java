@@ -93,6 +93,10 @@ public class SinglePlaceActivity extends ActionBarActivity {
             Intent i = new Intent(this, RadiusActivity.class);
             i.putExtra("lat", latlong.latitude);
             i.putExtra("lon", latlong.longitude);
+            i.putExtra("name", (String) getIntent().getStringExtra("name"));
+
+            System.out.println((String) getIntent().getStringExtra("name"));
+
             startActivity(i);
         }
     }

@@ -1,15 +1,13 @@
 package com.foodvote.foodvote;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
-import com.foodvote.foodvote.R;
 
 public class CreateRoomActivity extends ActionBarActivity {
 
@@ -55,7 +53,10 @@ public class CreateRoomActivity extends ActionBarActivity {
     }
 
     public void openMapActivity(View v) {
-        startActivity(new Intent(this, MapActivity.class));
+        Intent in = new Intent(this, MapActivity.class);
+        in.putExtra("name", (String) getIntent().getStringExtra("name"));
+        System.out.println((String) getIntent().getStringExtra("name"));
+        startActivity(in);
     }
 
 }
