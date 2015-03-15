@@ -6,7 +6,18 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.foodvote.google.AlertDialogManager;
+import com.foodvote.google.GPSTracker;
+import com.foodvote.model.PlaceManager;
+import com.foodvote.model.PlaceParser;
+import com.foodvote.yelp.YelpAPI;
+import com.google.android.gms.maps.model.LatLng;
+
+import java.util.ArrayList;
+
 public class RadiusActivity extends ActionBarActivity {
+
+    PlaceManager pm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,5 +51,35 @@ public class RadiusActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onDoneButton(MenuItem menu) {
+        String name = getIntent().getStringExtra("name");
+        double lat = (double) getIntent().getExtras().get("lat");
+        double lon = (double) getIntent().getExtras().get("lon");
+
+        GPSTracker gps = new GPSTracker(this);
+        AlertDialogManager alert = new AlertDialogManager();
+        LatLng location = new LatLng(49, -123);
+
+        if (gps.canGetLocation()) {
+            location = new LatLng(gps.getLatitude(), gps.getLongitude());
+        } else {
+            alert.showAlertDialog(this, "GPS Status",
+                    "Couldn't get location information. Please enable GPS",
+                    false);
+        }
+
+        YelpAPI yelp = new YelpAPI();
+        String queryResults = yelp.searchForBusinessesByLocation("", location);
+        System.out.println(queryResults);
+        PlaceParser parser = new PlaceParser();
+        parser.parse(queryResults);
+        this.pm = PlaceManager.getInstance();
+        ArrayList<String> idArray = new ArrayList<String>();
+        for (int i=0; i<pm.getSize(); i++) {
+            idArray.add(pm.get(i).getId());
+        }
+
     }
 }
