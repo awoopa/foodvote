@@ -21,6 +21,7 @@ import com.astuetz.PagerSlidingTabStrip;
 import com.foodvote.foodvote.R;
 
 import com.foodvote.model.Place;
+import com.foodvote.model.PlaceManager;
 import com.foodvote.model.Round;
 import com.foodvote.model.User;
 import com.foodvote.socket.SocketIO;
@@ -33,6 +34,7 @@ public class VoteActivity extends ActionBarActivity {
 
     FragmentPagerAdapter adapterViewPager;
 
+    PlaceManager pm;
     SocketIO socket;
 
     Slider slider;
@@ -59,6 +61,8 @@ public class VoteActivity extends ActionBarActivity {
 
         getSupportActionBar().setElevation(0);
 
+        pm = PlaceManager.getInstance();
+
         // socket init
         socket = SocketIO.getInstance();
 
@@ -67,9 +71,6 @@ public class VoteActivity extends ActionBarActivity {
             @Override
             public void onNewRound(int i, Round round) {
                 roundNum = i;
-                String placeA = round.getPlaceA();
-                String placeB = round.getPlaceB();
-                int score = round.getScore();
             }
         });
 
@@ -93,10 +94,13 @@ public class VoteActivity extends ActionBarActivity {
                 startWinnerActivity(rounds, result);
             }
         });
-
-
     }
 
+    private void setRound(Round round) {
+        Place A = pm.findPlaceById(round.getPlaceA());
+        Place B = pm.findPlaceById(round.getPlaceB());
+
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -126,8 +130,8 @@ public class VoteActivity extends ActionBarActivity {
     }
 
 
-    public static class VotePagerAdapter extends FragmentPagerAdapter {
-        private static int NUM_ITEMS = 2;
+    public class VotePagerAdapter extends FragmentPagerAdapter {
+        private int NUM_ITEMS = 2;
         private VoteCardFragment cardA;
         private VoteCardFragment cardB;
 

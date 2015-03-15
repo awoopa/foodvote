@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.foodvote.google.AlertDialogManager;
 import com.foodvote.google.GPSTracker;
@@ -15,9 +16,16 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
+import com.foodvote.model.Room;
+import com.foodvote.socket.SocketIO;
+
 public class RadiusActivity extends ActionBarActivity {
 
+    SocketIO socket;
+
     PlaceManager pm;
+
+    Button doneButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +36,23 @@ public class RadiusActivity extends ActionBarActivity {
         System.out.println(in.getExtras().getDouble("lat"));
         System.out.println(in.getExtras().getDouble("lon"));
         System.out.println(in.getExtras().getString("name"));
+
+        socket = SocketIO.getInstance();
+
+        socket.onRoomCreated(this, new SocketIO.OnRoomCreatedListener() {
+            public void onRoomCreated(Room room) {
+                joinRoom();
+            }
+        });
+
+        doneButton = (Button) findViewById(R.id.don)
+
     }
 
+    private void joinRoom() {
+        Intent intent = new Intent(this, LobbyActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
