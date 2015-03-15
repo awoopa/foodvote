@@ -10,6 +10,8 @@ import android.view.View;
 
 public class ResultsActivity extends ActionBarActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
