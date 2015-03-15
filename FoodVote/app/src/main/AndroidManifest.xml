@@ -49,16 +49,28 @@ e
         <activity
             android:name=".SuggestActivity"
             android:label="@string/title_activity_suggest" >
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".YelpSearchActivity"/>
 
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+
+        </activity>
+        <activity
+            android:name=".YelpSearchActivity"
+            android:label="@string/title_activity_yelp_search"
+            android:parentActivityName=".SuggestActivity" >
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.foodvote.foodvote.SuggestActivity" />
 
             <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+                <action android:name="android.intent.action.SEARCH" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 
