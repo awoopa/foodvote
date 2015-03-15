@@ -31,7 +31,11 @@ public class MainActivity extends ActionBarActivity {
         RecyclerView roomRV = (RecyclerView) findViewById(R.id.vote_list);
         roomRV.addItemDecoration(new SimpleDividerItemDecoration(getApplicationContext()));         //divider
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);                   //FAB
+        FloatingActionButton fabcreate = (FloatingActionButton) findViewById(R.id.fabcreate);
+        FloatingActionButton fabjoin = (FloatingActionButton) findViewById(R.id.fabjoin);
         fab.attachToRecyclerView(roomRV);
+        fabcreate.attachToRecyclerView(roomRV);
+        fabjoin.attachToRecyclerView(roomRV);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         roomRV.setLayoutManager(llm);
