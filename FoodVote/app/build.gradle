@@ -41,6 +41,7 @@ dependencies {
     compile files('libs/guava-11.0.1.jar')
     compile 'com.loopj.android:android-async-http:1.4.5'
     compile 'com.android.support:recyclerview-v7:+'
+    compile 'com.github.nkzawa:socket.io-client:0.4.2'
 
 }
 

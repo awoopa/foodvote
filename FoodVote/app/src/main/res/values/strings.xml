@@ -8,4 +8,7 @@
     <string name="action_refresh">Refresh</string>
     <string name="title_activity_lobby">LobbyActivity</string>
     <string name="title_activity_map_view">MapViewActivity</string>
+    <string name="title_activity_suggest">SuggestActivity</string>
+    <string name="search_hint">Search for...</string>
+    <string name="title_activity_yelp_search">YelpSearchActivity</string>
 </resources>
