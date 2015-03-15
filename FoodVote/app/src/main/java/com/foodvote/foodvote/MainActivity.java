@@ -12,6 +12,8 @@ import android.view.View;
 import com.foodvote.model.Place;
 import com.foodvote.model.Room;
 import com.foodvote.model.User;
+import com.foodvote.yelp.YelpAPI;
+import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,6 +29,13 @@ public class MainActivity extends ActionBarActivity {
 
         //RecyclerView for list of rooms
         RecyclerView roomRV = (RecyclerView) findViewById(R.id.vote_list);
+        roomRV.addItemDecoration(new SimpleDividerItemDecoration(getApplicationContext()));         //divider
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);                   //FAB
+        FloatingActionButton fabcreate = (FloatingActionButton) findViewById(R.id.fabcreate);
+        FloatingActionButton fabjoin = (FloatingActionButton) findViewById(R.id.fabjoin);
+        fab.attachToRecyclerView(roomRV);
+        fabcreate.attachToRecyclerView(roomRV);
+        fabjoin.attachToRecyclerView(roomRV);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         roomRV.setLayoutManager(llm);
@@ -41,6 +50,10 @@ public class MainActivity extends ActionBarActivity {
 
         RoomListAdapter rla = new RoomListAdapter(roomList);
         roomRV.setAdapter(rla);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.ic_appbar_logo);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
     }
 
 
