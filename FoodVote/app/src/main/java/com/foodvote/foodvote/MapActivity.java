@@ -8,8 +8,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -130,6 +132,27 @@ public class MapActivity extends ActionBarActivity {
         });
 
 
+        nearbyPlaces.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    // getting values from selected ListItem
+                    String reference = ((TextView) findViewById(R.id.reference)).getText().toString();
+
+                    // Starting new intent
+                    Intent in = new Intent(getApplicationContext(),
+                            SinglePlaceActivity.class);
+
+                    // Sending place refrence id to single place activity
+                    // place refrence id used to get "Place full details"
+                    in.putExtra(KEY_REFERENCE, reference);
+                    startActivity(in);
+                    finish();
+                    return true;
+                }
+                return false;
+            }
+        });
 
         /** Button click event for shown on map */
         btnShowOnMap.setOnClickListener(new View.OnClickListener() {
