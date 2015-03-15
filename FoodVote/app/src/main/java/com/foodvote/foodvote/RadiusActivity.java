@@ -5,8 +5,15 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.NumberPicker;
 
 public class RadiusActivity extends ActionBarActivity {
+
+    NumberPicker radiusPicker;
+    Button submitRadiusButton;
+    int radius;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +24,16 @@ public class RadiusActivity extends ActionBarActivity {
         System.out.println(in.getExtras().getDouble("lat"));
         System.out.println(in.getExtras().getDouble("lon"));
         System.out.println(in.getExtras().getString("name"));
+
+        radiusPicker = (NumberPicker) findViewById(R.id.numberPicker);
+        submitRadiusButton = (Button) findViewById(R.id.button6);
+
+        submitRadiusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               radius = radiusPicker.getValue();
+            }
+        });
     }
 
 
