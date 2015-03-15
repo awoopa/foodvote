@@ -1,11 +1,14 @@
 package com.foodvote.foodvote;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.foodvote.foodvote.R;
 import com.foodvote.model.Room;
@@ -21,6 +24,7 @@ public class LobbyActivity extends ActionBarActivity {
     List<User> userList = new ArrayList<User>();
     UserListAdapter ula = new UserListAdapter(userList);
 
+    Button startButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,14 @@ public class LobbyActivity extends ActionBarActivity {
             @Override
             public void onUserJoinedRoom(User new_user, List<User> users) {
                 ula.replaceAll(users);
+            }
+        });
+
+        startButton = (Button) findViewById(R.id.start_button);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: Add round activity intent and stuff
             }
         });
 
