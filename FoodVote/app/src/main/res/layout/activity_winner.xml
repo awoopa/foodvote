@@ -5,32 +5,111 @@
     android:layout_height="match_parent"
     tools:context="com.foodvote.foodvote.WinnerActivity">
 
-    <TextView
-        android:id="@+id/header"
-        android:layout_width="match_parent"
+    <ImageView
+        android:layout_width="fill_parent"
         android:layout_height="200dp"
-        android:background="#4f8"
-        android:text="@string/hello_world"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        />
+        android:id="@+id/imageView4"
+        android:layout_centerHorizontal="true"
+        android:background="@color/material_blue_500" />
 
-    <View
-        android:id="@+id/body"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/header"
-        />
-
-    <com.gc.materialdesign.views.ButtonFloat
-        android:id="@+id/fab"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/res_name"
+        android:layout_alignBottom="@+id/imageView4"
+        android:layout_alignLeft="@+id/imageView4"
+        android:layout_alignStart="@+id/imageView4"
+        android:textSize="32sp"
+        android:padding="16dp" />
+
+    <com.gc.materialdesign.views.ButtonFloat
+        android:id="@+id/buttonFloat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        materialdesign:animate="true"
+        materialdesign:iconDrawable="@drawable/ic_call"
+        android:layout_below="@+id/imageView4"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignBottom="@id/header"
-        android:layout_marginBottom="-32dp"
-        android:layout_marginRight="20dp"
-        materialdesign:iconDrawable="@drawable/ic_add_24dp"
-        />
+        android:layout_marginRight="32dp"
+        android:layout_marginTop="-32dp"
+        android:background="#d35400" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone Number"
+        android:id="@+id/textView6"
+        android:layout_below="@+id/imageView4"
+        android:layout_alignLeft="@+id/imageView4"
+        android:layout_alignStart="@+id/imageView4"
+        android:textSize="16sp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/res_phone"
+        android:layout_below="@+id/textView6"
+        android:layout_alignLeft="@+id/textView6"
+        android:layout_alignStart="@+id/textView6"
+        android:textSize="18dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@+id/res_phone"
+        android:layout_alignLeft="@+id/res_phone"
+        android:layout_alignStart="@+id/res_phone"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:id="@+id/imageView5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address"
+        android:id="@+id/textView8"
+        android:textSize="16sp"
+        android:paddingBottom="8dp"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        android:layout_alignTop="@+id/imageView5"
+        android:layout_alignLeft="@+id/res_phone"
+        android:layout_alignStart="@+id/res_phone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/res_address"
+        android:textSize="18dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="16dp"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:layout_below="@+id/textView8"
+        android:layout_alignLeft="@+id/textView8"
+        android:layout_alignStart="@+id/textView8" />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:id="@+id/imageView6"
+        android:layout_alignBottom="@+id/res_address"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="4dp" />
 
 </RelativeLayout>
