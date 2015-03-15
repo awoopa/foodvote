@@ -18,6 +18,7 @@ import com.foodvote.yelp.YelpAPI;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import com.foodvote.model.Room;
 import com.foodvote.socket.SocketIO;
@@ -32,16 +33,22 @@ public class RadiusActivity extends ActionBarActivity {
 
     PlaceManager pm;
 
+    ArrayList<String> idArray;
+
+    String name;
+    Double lat;
+    Double lon;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_radius);
 
         Intent in = getIntent();
-        System.out.println(in.getExtras().getDouble("lat"));
-        System.out.println(in.getExtras().getDouble("lon"));
-        System.out.println(in.getExtras().getString("name"));
+        lat = in.getDoubleExtra("lat", 0.0);
+        lon = in.getDoubleExtra("lon", 0.0);
 
+        name = in.getStringExtra("name");
 
         radiusPicker = (NumberPicker) findViewById(R.id.numberPicker);
         submitRadiusButton = (Button) findViewById(R.id.button6);
@@ -61,7 +68,12 @@ public class RadiusActivity extends ActionBarActivity {
             }
         });
 
-
+        submitRadiusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                socket.creatorSetup(name, radius, lat, lon, new Date(), idArray);
+            }
+        });
     }
 
     private void joinRoom() {
@@ -106,7 +118,7 @@ public class RadiusActivity extends ActionBarActivity {
         PlaceParser parser = new PlaceParser();
         parser.parse(queryResults);
         this.pm = PlaceManager.getInstance();
-        ArrayList<String> idArray = new ArrayList<String>();
+        idArray = new ArrayList<String>();
         for (int i=0; i<pm.getSize(); i++) {
             idArray.add(pm.get(i).getId());
         }
