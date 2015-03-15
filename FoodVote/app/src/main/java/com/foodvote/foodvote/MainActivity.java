@@ -31,11 +31,7 @@ public class MainActivity extends ActionBarActivity {
         RecyclerView roomRV = (RecyclerView) findViewById(R.id.vote_list);
         roomRV.addItemDecoration(new SimpleDividerItemDecoration(getApplicationContext()));         //divider
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);                   //FAB
-        FloatingActionButton fabcreate = (FloatingActionButton) findViewById(R.id.fabcreate);
-        FloatingActionButton fabjoin = (FloatingActionButton) findViewById(R.id.fabjoin);
         fab.attachToRecyclerView(roomRV);
-        fabcreate.attachToRecyclerView(roomRV);
-        fabjoin.attachToRecyclerView(roomRV);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         roomRV.setLayoutManager(llm);
@@ -96,5 +92,9 @@ public class MainActivity extends ActionBarActivity {
 
     public void openSuggest(View v) {
         startActivity(new Intent(this, SuggestActivity.class));
+    }
+
+    public void openKeycode(View v) {
+        startActivity(new Intent(this, KeycodeActivity.class));
     }
 }

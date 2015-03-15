@@ -80,6 +80,14 @@
             android:name=".ResultsActivity"
             android:label="@string/title_activity_results" >
         </activity>
+        <activity
+            android:name=".KeycodeActivity"
+            android:label="@string/title_activity_keycode"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.foodvote.foodvote.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
