@@ -34,7 +34,7 @@
         android:paddingLeft="10dp"
         android:singleLine="true"
         android:maxLines="1"
-        android:background="#fff"
+        android:background="@drawable/flat_edittext"
         android:hint="Enter room name to join or create"
         android:layout_above="@id/join_room_button"/>
 
@@ -45,10 +45,18 @@
         android:id="@+id/user_name_edittext"
         android:singleLine="true"
         android:maxLines="1"
-        android:background="#fff"
+        android:background="@drawable/flat_edittext"
         android:hint="Enter user name"
         android:paddingLeft="10dp"
         android:layout_above="@id/room_name_edittext" />
+
+    <ImageView
+        android:layout_width="298dp"
+        android:layout_height="66dp"
+        android:id="@+id/imageView3"
+        android:src="@drawable/pickaplace"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 
 
 </RelativeLayout>

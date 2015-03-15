@@ -1,10 +1,14 @@
 package com.foodvote.foodvote;
 
+
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+
+import android.content.Intent;
+
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -12,11 +16,19 @@ import android.view.MenuItem;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.foodvote.foodvote.R;
+
 import com.foodvote.model.Place;
+import com.foodvote.model.Round;
+import com.foodvote.model.User;
+import com.foodvote.socket.SocketIO;
+
+import java.util.List;
 
 public class VoteActivity extends ActionBarActivity {
 
     FragmentPagerAdapter adapterViewPager;
+
+    SocketIO socket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +46,49 @@ public class VoteActivity extends ActionBarActivity {
         tabs.setViewPager(vpPager);
 
         getSupportActionBar().setElevation(0);
+
+        // socket init
+        socket = SocketIO.getInstance();
+        socket.connect();
+
+        // listeners
+        socket.onNewRound(this, new SocketIO.OnNewRoundListener() {
+            @Override
+            public void onNewRound(int i, Round round) {
+                // TODO: this
+                String placeA = round.getPlaceA();
+                String placeB = round.getPlaceB();
+                int score = round.getScore();
+            }
+        });
+
+        socket.onUserVoted(this, new SocketIO.OnUserVotedListener() {
+            @Override
+            public void onUserVoted(User user, Round round) {
+                // TODO; that
+            }
+        });
+
+        socket.onRoundEnded(this, new SocketIO.OnRoundEndedListener() {
+            @Override
+            public void onRoundEnded(int i, Round round) {
+                // TODO: these
+            }
+        });
+
+        socket.onNewRound(this, new SocketIO.OnNewRoundListener() {
+            @Override
+            public void onNewRound(int i, Round round) {
+                // TODO: everything else
+            }
+        });
+
+        socket.onVotingEnd(this, new SocketIO.OnVotingEndListener() {
+            @Override
+            public void onVotingEnd(List<Round> rounds, String result) {
+                startWinnerActivity(rounds, result);
+            }
+        });
     }
 
 
@@ -106,5 +161,14 @@ public class VoteActivity extends ActionBarActivity {
         public void setPlaceCardB(Place place) {
             cardB.setPlace(place);
         }
+    }
+
+    private void startWinnerActivity(List<Round> rounds, String result) {
+        Intent intent = new Intent(this, WinnerActivity.class);
+        Bundle bundle = new Bundle();
+
+        intent.putExtra("result", result);
+
+        startActivity(intent);
     }
 }
