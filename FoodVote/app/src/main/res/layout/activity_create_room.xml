@@ -22,7 +22,7 @@
         android:layout_marginTop="10dp"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="30dp"
-        android:text="Google Maps"
+        android:text="Let's Go!"
         android:background="@drawable/flat_button"
         android:id="@+id/join_room_button"
         android:onClick="openMapActivity"
@@ -31,7 +31,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Let us know where you want to eat"
+        android:text="Where would you like to eat?"
         android:layout_marginBottom="20dp"
         android:id="@+id/textView3"
         android:textColor="#eee"
@@ -42,7 +42,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="NEW ROOM"
+        android:text="CREATING NEW ROOM"
         android:textColor="#eee"
         android:textSize="30sp"
         android:id="@+id/textView4"
