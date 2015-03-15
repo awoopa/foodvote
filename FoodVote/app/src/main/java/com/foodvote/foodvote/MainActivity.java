@@ -50,6 +50,10 @@ public class MainActivity extends ActionBarActivity {
 
         RoomListAdapter rla = new RoomListAdapter(roomList);
         roomRV.setAdapter(rla);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setLogo(R.drawable.icona);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
     }
 
 
