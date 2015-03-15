@@ -16,7 +16,6 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -135,19 +134,45 @@ public class SinglePlaceActivity extends ActionBarActivity {
                         if (status.equals("OK")) {
                             if (placeDetails.result != null) {
                                 LatLng ltln = new LatLng(placeDetails.result.geometry.location.lat, placeDetails.result.geometry.location.lng);
-                                GoogleMap map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+                                final GoogleMap map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
                                 View mapView = getSupportFragmentManager().findFragmentById(R.id.map).getView();
 
-                                MarkerOptions a = new MarkerOptions().position(latlng);
-                                MarkerOptions b = new MarkerOptions().position(ltln);
+                                MarkerOptions a = new MarkerOptions().position(ltln);
                                 Marker m = map.addMarker(a);
-                                Marker m2 = map.addMarker(b);
+                                m.setDraggable(true);
 
-                                LatLngBounds.Builder bld = new LatLngBounds.Builder();
-                                bld.include(ltln);
-                                bld.include(latlng);
-                                LatLngBounds bounds = bld.build();
-                                map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 70));
+                                map.setOnMarkerDragListener(new GoogleMap.OnMarkerDragListener() {
+                                    @Override
+                                    public void onMarkerDragStart(Marker arg0) {
+                                        // TODO Auto-generated method stub
+                                    }
+
+                                    @SuppressWarnings("unchecked")
+                                    @Override
+                                    public void onMarkerDragEnd(Marker arg0) {
+                                        // TODO Auto-generated method stub
+                                        map.animateCamera(CameraUpdateFactory.newLatLng(arg0.getPosition()));
+                                    }
+                                    int count = 0;
+                                    @Override
+                                    public void onMarkerDrag(Marker arg0) {
+                                        // TODO Auto-generated method stub
+                                    }
+                                });
+
+
+                                map.animateCamera(CameraUpdateFactory.newLatLngZoom(m.getPosition(), 14));
+
+//                                MarkerOptions a = new MarkerOptions().position(latlng);
+//                                MarkerOptions b = new MarkerOptions().position(ltln);
+//                                Marker m = map.addMarker(a);
+//                                Marker m2 = map.addMarker(b);
+//
+//                                LatLngBounds.Builder bld = new LatLngBounds.Builder();
+//                                bld.include(ltln);
+//                                bld.include(latlng);
+//                                LatLngBounds bounds = bld.build();
+//                                map.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, 70));
 
                             }
                         }
