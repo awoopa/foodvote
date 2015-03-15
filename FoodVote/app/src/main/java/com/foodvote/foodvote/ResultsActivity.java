@@ -7,15 +7,22 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 public class ResultsActivity extends ActionBarActivity {
 
-
+    TextView name;
+    TextView phone;
+    TextView address;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
+
+        name = (TextView) findViewById(R.id.res_name);
+        phone = (TextView) findViewById(R.id.res_phone);
+        address = (TextView) findViewById(R.id.res_address);
     }
 
 

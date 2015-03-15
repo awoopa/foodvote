@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.foodvote.foodvote.R;
@@ -32,7 +33,7 @@ import java.util.List;
 
 public class VoteActivity extends ActionBarActivity {
 
-    FragmentPagerAdapter adapterViewPager;
+    //FragmentPagerAdapter adapterViewPager;
 
     PlaceManager pm;
     SocketIO socket;
@@ -40,6 +41,11 @@ public class VoteActivity extends ActionBarActivity {
     Slider slider;
 
     int roundNum;
+
+    TextView cardAName;
+    TextView cardADesc;
+    TextView cardBName;
+    TextView cardBDesc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,17 +55,21 @@ public class VoteActivity extends ActionBarActivity {
         slider = (Slider) findViewById(R.id.slider);
         slider.setValue(50);
 
+        cardAName = (TextView) findViewById(R.id.cardAName);
+        cardADesc = (TextView) findViewById(R.id.cardADesc);
+        cardBName = (TextView) findViewById(R.id.cardBName);
+        cardBDesc = (TextView) findViewById(R.id.cardBDesc);
+
         //ViewPager for left and right cards
-        ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        adapterViewPager = new VotePagerAdapter(fragmentManager);
-        vpPager.setAdapter(adapterViewPager);
+//        ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//        adapterViewPager = new VotePagerAdapter(fragmentManager);
+//        vpPager.setAdapter(adapterViewPager);
 
         //Tabs
-        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
-        tabs.setViewPager(vpPager);
+//        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+//        tabs.setViewPager(vpPager);
 
-        getSupportActionBar().setElevation(0);
 
         pm = PlaceManager.getInstance();
 
@@ -130,54 +140,56 @@ public class VoteActivity extends ActionBarActivity {
     }
 
 
-    public class VotePagerAdapter extends FragmentPagerAdapter {
-        private int NUM_ITEMS = 2;
-        private VoteCardFragment cardA;
-        private VoteCardFragment cardB;
 
-        public VotePagerAdapter(FragmentManager fm) {
-            super(fm);
-            cardA = VoteCardFragment.newInstance();
-            cardB = VoteCardFragment.newInstance();
-        }
+//    public static class VotePagerAdapter extends FragmentPagerAdapter {
+//        private static int NUM_ITEMS = 2;
+//        private VoteCardFragment cardA;
+//        private VoteCardFragment cardB;
+//
+//        public VotePagerAdapter(FragmentManager fm) {
+//            super(fm);
+//            cardA = VoteCardFragment.newInstance();
+//            cardB = VoteCardFragment.newInstance();
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return NUM_ITEMS;
+//        }
+//
+//        @Override
+//        public Fragment getItem(int position) {
+//            switch (position) {
+//                case 0:
+//                    return cardA;
+//                case 1:
+//                    return cardB;
+//                default:
+//                    return new Fragment();
+//            }
+//        }
+//
+//        @Override
+//        public CharSequence getPageTitle(int position) {
+//            switch (position) {
+//                case 0:
+//                    return "Place A";
+//                case 1:
+//                    return "Place B";
+//                default:
+//                    return "";
+//            }
+//        }
+//
+//        public void setPlaceCardA(Place place) {
+//            cardA.setPlace(place);
+//        }
+//
+//        public void setPlaceCardB(Place place) {
+//            cardB.setPlace(place);
+//        }
+//    }
 
-        @Override
-        public int getCount() {
-            return NUM_ITEMS;
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    return cardA;
-                case 1:
-                    return cardB;
-                default:
-                    return new Fragment();
-            }
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            switch (position) {
-                case 0:
-                    return "Place A";
-                case 1:
-                    return "Place B";
-                default:
-                    return "";
-            }
-        }
-
-        public void setPlaceCardA(Place place) {
-            cardA.setPlace(place);
-        }
-
-        public void setPlaceCardB(Place place) {
-            cardB.setPlace(place);
-        }
-    }
 
     private void startWinnerActivity(List<Round> rounds, String result) {
         Intent intent = new Intent(this, WinnerActivity.class);

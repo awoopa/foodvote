@@ -11,6 +11,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:text="Select Search Radius"
         android:textColor="#eee"
         android:textSize="30sp"
@@ -33,8 +34,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/numberPicker"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/res_name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp" />
 
     <Button
         android:layout_width="match_parent"
