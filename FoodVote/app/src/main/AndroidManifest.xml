@@ -104,6 +104,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.foodvote.foodvote.MainActivity" />
         </activity>
+        <activity
+            android:name=".WinnerActivity"
+            android:label="@string/title_activity_winner"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.foodvote.foodvote.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

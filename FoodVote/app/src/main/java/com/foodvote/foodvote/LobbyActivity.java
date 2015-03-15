@@ -42,6 +42,13 @@ public class LobbyActivity extends ActionBarActivity {
             }
         });
 
+        socket.onVotingStart(this, new SocketIO.OnVotingStartListener() {
+           @Override
+            public void onVotingStart(Room room) {
+               // TODO: actually implement voting start activity switching
+           }
+        });
+
         startButton = (Button) findViewById(R.id.start_button);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
