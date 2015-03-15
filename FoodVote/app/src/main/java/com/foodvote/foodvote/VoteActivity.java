@@ -12,8 +12,10 @@ import android.content.Intent;
 
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.astuetz.PagerSlidingTabStrip;
 import com.foodvote.foodvote.R;
@@ -22,6 +24,7 @@ import com.foodvote.model.Place;
 import com.foodvote.model.Round;
 import com.foodvote.model.User;
 import com.foodvote.socket.SocketIO;
+import com.gc.materialdesign.views.Slider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,10 +35,15 @@ public class VoteActivity extends ActionBarActivity {
 
     SocketIO socket;
 
+    Slider slider;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vote);
+
+        slider = (Slider) findViewById(R.id.slider);
+        slider.setValue(50);
 
         //ViewPager for left and right cards
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
@@ -111,9 +119,14 @@ public class VoteActivity extends ActionBarActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+        if (id == R.id.action_vote) {
+            Log.d("Slider", Integer.toString(slider.getValue()));
+            return true;
+        }
 
         return super.onOptionsItemSelected(item);
     }
+
 
     public static class VotePagerAdapter extends FragmentPagerAdapter {
         private static int NUM_ITEMS = 2;
