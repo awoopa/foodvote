@@ -73,7 +73,6 @@ public class KeycodeActivity extends ActionBarActivity {
         if (TextUtils.isEmpty(userName) || TextUtils.isEmpty(roomName))
             return;
         socket.joinRoom(userName, roomName);
-
     }
 
     private void startCreateRoomActivity() {

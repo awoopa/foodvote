@@ -9,11 +9,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.NumberPicker;
 
+
+import com.foodvote.google.AlertDialogManager;
+import com.foodvote.google.GPSTracker;
+import com.foodvote.model.PlaceManager;
+import com.foodvote.model.PlaceParser;
+import com.foodvote.yelp.YelpAPI;
+import com.google.android.gms.maps.model.LatLng;
+
+import java.util.ArrayList;
+
+import com.foodvote.model.Room;
+import com.foodvote.socket.SocketIO;
+
 public class RadiusActivity extends ActionBarActivity {
 
     NumberPicker radiusPicker;
     Button submitRadiusButton;
     int radius;
+
+    SocketIO socket;
+
+    PlaceManager pm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +42,7 @@ public class RadiusActivity extends ActionBarActivity {
         System.out.println(in.getExtras().getDouble("lon"));
         System.out.println(in.getExtras().getString("name"));
 
+
         radiusPicker = (NumberPicker) findViewById(R.id.numberPicker);
         submitRadiusButton = (Button) findViewById(R.id.button6);
 
@@ -34,8 +52,22 @@ public class RadiusActivity extends ActionBarActivity {
                radius = radiusPicker.getValue();
             }
         });
+
+        socket = SocketIO.getInstance();
+
+        socket.onRoomCreated(this, new SocketIO.OnRoomCreatedListener() {
+            public void onRoomCreated(Room room) {
+                joinRoom();
+            }
+        });
+
+
     }
 
+    private void joinRoom() {
+        Intent intent = new Intent(this, LobbyActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -57,5 +89,27 @@ public class RadiusActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void onDoneButton(MenuItem menu) {
+        String name = getIntent().getStringExtra("name");
+        double lat = (double) getIntent().getExtras().get("lat");
+        double lon = (double) getIntent().getExtras().get("lon");
+
+        GPSTracker gps = new GPSTracker(this);
+        AlertDialogManager alert = new AlertDialogManager();
+        LatLng location = new LatLng(lat, lon);
+
+        YelpAPI yelp = new YelpAPI();
+        String queryResults = yelp.searchForBusinessesByLocation("", location);
+        System.out.println(queryResults);
+        PlaceParser parser = new PlaceParser();
+        parser.parse(queryResults);
+        this.pm = PlaceManager.getInstance();
+        ArrayList<String> idArray = new ArrayList<String>();
+        for (int i=0; i<pm.getSize(); i++) {
+            idArray.add(pm.get(i).getId());
+        }
+
     }
 }
