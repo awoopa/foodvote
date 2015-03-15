@@ -6,6 +6,8 @@ import android.content.Context;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
@@ -14,10 +16,21 @@ import com.foodvote.foodvote.R;
 
 public class SuggestActivity extends ActionBarActivity {
 
+    private SearchResultsAdapter sra;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_suggest);
+
+        //RecyclerView for results
+        RecyclerView resultsRV = (RecyclerView) findViewById(R.id.results_list);
+        LinearLayoutManager llm = new LinearLayoutManager(this);
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        resultsRV.setLayoutManager(llm);
+
+        sra = new SearchResultsAdapter();
+        resultsRV.setAdapter(sra);
     }
 
 
@@ -53,5 +66,12 @@ public class SuggestActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        sra.refresh();
     }
 }

@@ -41,10 +41,13 @@ public class YelpSearchActivity extends ActionBarActivity {
 
             YelpAPI yelp = new YelpAPI();
             String queryResults = yelp.searchForBusinessesByLocation(query, location);
+            System.out.println(queryResults);
             PlaceParser parser = new PlaceParser();
             parser.parse(queryResults);
         }
-
+        Intent openMainActivity = new Intent(this, SuggestActivity.class);
+        openMainActivity.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(openMainActivity);
 
     }
 

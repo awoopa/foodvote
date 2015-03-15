@@ -4,9 +4,51 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.foodvote.foodvote.KeycodeActivity">
+    tools:context="com.foodvote.foodvote.KeycodeActivity"
+    android:background="#d35400">
 
-    <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/imageView"
+        android:src="@drawable/icon"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:layout_alignParentBottom="true"
+        android:text="ENTER"
+        android:background="@drawable/flat_button"
+        android:id="@+id/join_room_button"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/room_name_edittext"
+        android:paddingLeft="10dp"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:background="#fff"
+        android:hint="Enter room name to join or create"
+        android:layout_above="@id/join_room_button"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/user_name_edittext"
+        android:singleLine="true"
+        android:maxLines="1"
+        android:background="#fff"
+        android:hint="Enter user name"
+        android:paddingLeft="10dp"
+        android:layout_above="@id/room_name_edittext" />
+
 
 </RelativeLayout>
