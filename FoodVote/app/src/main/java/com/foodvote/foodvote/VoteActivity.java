@@ -1,6 +1,7 @@
 package com.foodvote.foodvote;
 
 
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
@@ -22,6 +23,7 @@ import com.foodvote.model.Round;
 import com.foodvote.model.User;
 import com.foodvote.socket.SocketIO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -42,7 +44,6 @@ public class VoteActivity extends FragmentActivity {
 
         // socket init
         socket = SocketIO.getInstance();
-        socket.connect();
 
         // listeners
         socket.onNewRound(this, new SocketIO.OnNewRoundListener() {
@@ -146,9 +147,9 @@ public class VoteActivity extends FragmentActivity {
 
     private void startWinnerActivity(List<Round> rounds, String result) {
         Intent intent = new Intent(this, WinnerActivity.class);
-        Bundle bundle = new Bundle();
 
         intent.putExtra("result", result);
+        intent.putParcelableArrayListExtra("rounds", (ArrayList<Round>) rounds);
 
         startActivity(intent);
     }
