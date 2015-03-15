@@ -41,6 +41,18 @@
         android:clickable="true"
         android:onClick="openSuggest"/>
 
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="KeyCodeActivity"
+        android:id="@+id/button4"
+        android:clickable="true"
+        android:onClick="openKeycode"
+        android:layout_above="@+id/button"
+        android:layout_alignLeft="@+id/button3"
+        android:layout_alignStart="@+id/button3" />
+
     <com.melnykov.fab.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
