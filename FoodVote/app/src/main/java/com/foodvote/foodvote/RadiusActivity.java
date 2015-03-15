@@ -78,6 +78,7 @@ public class RadiusActivity extends ActionBarActivity {
 
     private void joinRoom() {
         Intent intent = new Intent(this, LobbyActivity.class);
+        intent.putExtra("isCreator", true);
         startActivity(intent);
     }
 
