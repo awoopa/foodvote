@@ -1,24 +1,54 @@
 package com.foodvote.foodvote;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 import com.foodvote.foodvote.R;
+import com.foodvote.model.Room;
 import com.foodvote.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import com.foodvote.socket.SocketIO;
+
 public class LobbyActivity extends ActionBarActivity {
+
+    List<User> userList = new ArrayList<User>();
+    UserListAdapter ula = new UserListAdapter(userList);
+
+    Button startButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby);
+
+        // create socket and listener
+        SocketIO socket = SocketIO.getInstance();
+        socket.connect();
+
+        socket.onUserJoinedRoom(this, new SocketIO.OnUserJoinedRoomListener() {
+            @Override
+            public void onUserJoinedRoom(User new_user, List<User> users) {
+                ula.replaceAll(users);
+            }
+        });
+
+        startButton = (Button) findViewById(R.id.start_button);
+        startButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: Add round activity intent and stuff
+            }
+        });
 
         //RecyclerView for list of users
         RecyclerView userRV = (RecyclerView) findViewById(R.id.user_list);
@@ -28,15 +58,15 @@ public class LobbyActivity extends ActionBarActivity {
         userRV.setLayoutManager(llm);
 
         //Testing values
-        User u1 = new User("user 1", 1);
+        /*User u1 = new User("user 1", 1);
         User u2 = new User("user 2", 2);
         User u3 = new User("user 3", 3);
         List<User> userList = new ArrayList<User>();
         userList.add(u1);
         userList.add(u2);
-        userList.add(u3);
-
-        UserListAdapter ula = new UserListAdapter(userList);
+        userList.add(u3);*/
+/*
+        UserListAdapter ula = new UserListAdapter(userList);*/
         userRV.setAdapter(ula);
     }
 

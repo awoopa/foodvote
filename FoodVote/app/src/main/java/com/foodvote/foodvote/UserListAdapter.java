@@ -35,6 +35,22 @@ public class UserListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return TYPE_ITEM;
     }
 
+    public void add(User user) {
+        userList.add(user);
+        notifyItemInserted(userList.size()-1);
+    }
+
+    public void remove(User user) {
+        int position = userList.indexOf(user);
+        userList.remove(position);
+        notifyItemRemoved(position);
+    }
+
+    public void replaceAll(List<User> users) {
+        userList = users;
+        notifyDataSetChanged();
+    }
+
     //headers should always be at pos 0 and 2
     private boolean isHeader(int pos) {
         return pos == 0 || pos == 2;
