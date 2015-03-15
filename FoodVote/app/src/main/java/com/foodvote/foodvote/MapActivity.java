@@ -8,8 +8,10 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -71,6 +73,7 @@ public class MapActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_map);
 
+
         cd = new ConnectionDetector(getApplicationContext());
 
         // Check if Internet present
@@ -101,9 +104,6 @@ public class MapActivity extends ActionBarActivity {
         // Getting listview
         lv = (ListView) findViewById(R.id.place_list);
 
-        // button show on map
-        btnShowOnMap = (Button) findViewById(R.id.btn_show_map);
-
         EditText nearbyPlaces = (EditText) findViewById(R.id.nearby_places_edittext);
 
         // calling background Async task to load Google Places
@@ -113,7 +113,8 @@ public class MapActivity extends ActionBarActivity {
         nearbyPlaces.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                new LoadPlaces().execute(s.toString());
+                if (count > 2 && count < 32)
+                    new LoadPlaces().execute(s.toString());
             }
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
@@ -128,27 +129,28 @@ public class MapActivity extends ActionBarActivity {
         });
 
 
-
-        /** Button click event for shown on map */
-        btnShowOnMap.setOnClickListener(new View.OnClickListener() {
-
+        nearbyPlaces.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
-            public void onClick(View arg0) {
-//                Intent i = new Intent(getApplicationContext(),
-//                        PlacesMapActivity.class);
-//                // Sending user current geo location
-//                i.putExtra("user_latitude", Double.toString(gps.getLatitude()));
-//                i.putExtra("user_longitude", Double.toString(gps.getLongitude()));
-//
-//                // passing near places to map activity
-//                i.putExtra("near_places", nearPlaces);
-//                // staring activity
-//                startActivity(i);
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    // getting values from selected ListItem
+                    String reference = ((TextView) findViewById(R.id.reference)).getText().toString();
 
-//                GooglePlaces places = new GooglePlaces();
-                  startActivity(new Intent(getApplicationContext(), MapViewActivity.class));
+                    // Starting new intent
+                    Intent in = new Intent(getApplicationContext(),
+                            SinglePlaceActivity.class);
+
+                    // Sending place refrence id to single place activity
+                    // place refrence id used to get "Place full details"
+                    in.putExtra(KEY_REFERENCE, reference);
+                    startActivity(in);
+                    finish();
+                    return true;
+                }
+                return false;
             }
         });
+
 
 
         /**
@@ -171,6 +173,7 @@ public class MapActivity extends ActionBarActivity {
                 // place refrence id used to get "Place full details"
                 in.putExtra(KEY_REFERENCE, reference);
                 startActivity(in);
+                finish();
             }
         });
     }
@@ -212,10 +215,11 @@ public class MapActivity extends ActionBarActivity {
 
                 // get nearest places
                 if (types == "")
-                   types = "restaurants|cafes";
-
-                nearPlaces = googlePlaces.search(gps.getLatitude(),
-                    gps.getLongitude(), radius, types);
+                    nearPlaces = googlePlaces.search(gps.getLatitude(),
+                            gps.getLongitude(), radius, null);
+                else
+                    nearPlaces = googlePlaces.search(gps.getLatitude(),
+                            gps.getLongitude(), radius, types);
 
 
             } catch (Exception e) {

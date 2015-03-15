@@ -11,14 +11,8 @@
         android:layout_marginTop="10dip"
         android:maxLines="1"
         android:completionThreshold="3"
-        android:inputType="textAutoComplete" />
-
-    <!-- Show on Map button -->
-    <Button android:id="@+id/btn_show_map"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Show Places on Map"
-        android:layout_below="@+id/nearby_places_edittext"/>
+        android:inputType="textAutoComplete"
+        android:imeOptions="actionSearch"/>
 
     />
 
@@ -27,7 +21,7 @@
         android:id="@+id/place_list"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/btn_show_map"/>
+        android:layout_below="@id/nearby_places_edittext" />
 
 
 

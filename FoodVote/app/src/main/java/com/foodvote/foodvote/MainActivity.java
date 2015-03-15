@@ -1,8 +1,8 @@
 package com.foodvote.foodvote;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -13,6 +13,7 @@ import com.foodvote.model.Place;
 import com.foodvote.model.Room;
 import com.foodvote.model.User;
 import com.foodvote.yelp.YelpAPI;
+import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +29,9 @@ public class MainActivity extends ActionBarActivity {
 
         //RecyclerView for list of rooms
         RecyclerView roomRV = (RecyclerView) findViewById(R.id.vote_list);
+        roomRV.addItemDecoration(new SimpleDividerItemDecoration(getApplicationContext()));         //divider
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);                   //FAB
+        fab.attachToRecyclerView(roomRV);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         roomRV.setLayoutManager(llm);
@@ -42,6 +46,10 @@ public class MainActivity extends ActionBarActivity {
 
         RoomListAdapter rla = new RoomListAdapter(roomList);
         roomRV.setAdapter(rla);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setLogo(R.drawable.ic_appbar_logo);
+        getSupportActionBar().setDisplayUseLogoEnabled(true);
     }
 
 
@@ -92,5 +100,9 @@ public class MainActivity extends ActionBarActivity {
 
     public void openSuggest(View v) {
         startActivity(new Intent(this, SuggestActivity.class));
+    }
+
+    public void openKeycode(View v) {
+        startActivity(new Intent(this, KeycodeActivity.class));
     }
 }

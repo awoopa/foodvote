@@ -1,6 +1,7 @@
 package com.foodvote.yelp;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
@@ -11,9 +12,6 @@ import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
-import java.nio.charset.UnsupportedCharsetException;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -70,16 +68,16 @@ public class YelpAPI {
    * @return <tt>String</tt> JSON Response
    */
   public String searchForBusinessesByLocation(String term, LatLng ltlng) {
+      String s = "";
       try {
-          String latlon = URLEncoder.encode(ltlng.latitude + "," + ltlng.longitude, "UTF-8");
-          return (new HTTPAsyncTask()).execute(term, latlon, "location").get();
+          String latlon = ltlng.latitude + "," + ltlng.longitude;
+          HTTPAsyncTask h = new HTTPAsyncTask();
+          AsyncTask j = h.execute(term, latlon, "location");
+          s = (String) j.get();
+          return s;
       } catch (InterruptedException e) {
           e.printStackTrace();
       } catch (ExecutionException e) {
-          e.printStackTrace();
-      } catch (UnsupportedCharsetException e) {
-          e.printStackTrace();
-      } catch (UnsupportedEncodingException e) {
           e.printStackTrace();
       }
 
@@ -152,14 +150,16 @@ public class YelpAPI {
             }
             else {
                 request = createOAuthRequest(SEARCH_PATH);
-                request.addQuerystringParameter("term", params[0]);
-                request.addQuerystringParameter("cll", params[1]);
-
                 request.addQuerystringParameter("limit", String.valueOf(SEARCH_LIMIT));
-                System.out.println(request);
+                request.addQuerystringParameter("term", params[0]);
+                request.addQuerystringParameter("ll", params[1]);
+;
             }
 
             service.signRequest(accessToken, request);
+            Log.d("YelpAPI", request.toString());
+            Log.d("YelpAPI", request.getCompleteUrl());
+            Log.d("YelpAPI", request.getOauthParameters().toString());
             Response response = request.send();
             return response.getBody();
 

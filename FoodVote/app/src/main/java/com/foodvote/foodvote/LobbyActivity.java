@@ -22,6 +22,7 @@ public class LobbyActivity extends ActionBarActivity {
 
         //RecyclerView for list of users
         RecyclerView userRV = (RecyclerView) findViewById(R.id.user_list);
+        userRV.addItemDecoration(new SimpleDividerItemDecoration(getApplicationContext()));         //divider
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         userRV.setLayoutManager(llm);
