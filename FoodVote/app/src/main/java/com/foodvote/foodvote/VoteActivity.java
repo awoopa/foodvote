@@ -87,13 +87,6 @@ public class VoteActivity extends ActionBarActivity {
             }
         });
 
-        socket.onNewRound(this, new SocketIO.OnNewRoundListener() {
-            @Override
-            public void onNewRound(int i, Round round) {
-                // TODO: everything else
-            }
-        });
-
         socket.onVotingEnd(this, new SocketIO.OnVotingEndListener() {
             @Override
             public void onVotingEnd(List<Round> rounds, String result) {
