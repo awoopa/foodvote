@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.foodvote.foodvote" >
-    <uses-library android:name="com.google.android.maps" />
 
+    <uses-library android:name="com.google.android.maps" />
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -43,9 +43,14 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyC_ta35eIv2p7z-EAo8y64oBd0K0Jh2VvQ" />
+
         <activity
             android:name=".LobbyActivity"
             android:label="@string/title_activity_lobby" >
+        </activity>
+        <activity
+            android:name=".MapViewActivity"
+            android:label="@string/title_activity_map_view" >
         </activity>
     </application>
 

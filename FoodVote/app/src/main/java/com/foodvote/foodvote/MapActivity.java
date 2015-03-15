@@ -146,17 +146,7 @@ public class MapActivity extends ActionBarActivity {
 //                startActivity(i);
 
 //                GooglePlaces places = new GooglePlaces();
-                EditText et = (EditText) findViewById(R.id.nearby_places_edittext);
-//                try {
-//                    places.search(gps.getLatitude(), gps.getLongitude(), 10000, et.getText().toString());
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-
-//                System.out.println("line draw");
-
-                new LoadPlaces().execute(et.getText().toString());
-
+                  startActivity(new Intent(getApplicationContext(), MapViewActivity.class));
             }
         });
 
