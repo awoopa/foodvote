@@ -4,21 +4,104 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.foodvote.foodvote.VoteActivity">
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/vote_card"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        card_view:cardCornerRadius="2dp"
+        android:layout_margin="8dp">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
-    <com.astuetz.PagerSlidingTabStrip
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        materialdesign:pstsPaddingMiddle="true"/>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/vpPager"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/tabs"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
-    </android.support.v4.view.ViewPager>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/cardAName"
+                android:textSize="32dp"
+                android:padding="8dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="48dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/cardADesc"
+                android:padding="8dp"
+                android:textSize="18dp"
+                android:layout_below="@+id/cardAName"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="A"
+                android:id="@+id/textView11"
+                android:singleLine="false"
+                android:textSize="24dp"
+                android:padding="8dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+        </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        xmlns:card_view="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/vote_card2"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_width="fill_parent"
+        android:layout_height="200dp"
+        card_view:cardCornerRadius="2dp"
+        android:layout_below="@+id/vote_card"
+        android:layout_margin="8dp">
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/cardBName"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:textSize="32dp"
+                android:layout_marginTop="48dp"
+                android:padding="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="New Text"
+                android:id="@+id/cardBDesc"
+                android:layout_below="@+id/cardBName"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:padding="8dp"
+                android:textSize="18dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="B"
+                android:id="@+id/textView12"
+                android:singleLine="false"
+                android:textSize="24dp"
+                android:padding="8dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
 
     <com.gc.materialdesign.views.Slider
         android:id="@+id/slider"
@@ -30,5 +113,29 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="A"
+        android:id="@+id/textView13"
+        android:singleLine="false"
+        android:textSize="24dp"
+        android:padding="8dp"
+        android:layout_below="@+id/vote_card2"
+        android:layout_alignLeft="@+id/vote_card2"
+        android:layout_alignStart="@+id/vote_card2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="B"
+        android:id="@+id/textView14"
+        android:singleLine="false"
+        android:textSize="24dp"
+        android:padding="8dp"
+        android:layout_below="@+id/vote_card2"
+        android:layout_alignRight="@+id/vote_card2"
+        android:layout_alignEnd="@+id/vote_card2" />
 </RelativeLayout>
 
