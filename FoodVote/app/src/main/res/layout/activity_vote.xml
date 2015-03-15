@@ -3,16 +3,21 @@
     xmlns:materialdesign="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.foodvote.foodvote.VoteActivity">
 
+    <com.astuetz.PagerSlidingTabStrip
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        materialdesign:pstsPaddingMiddle="true"/>
     <android.support.v4.view.ViewPager
         android:id="@+id/vpPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tabs"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
     </android.support.v4.view.ViewPager>
 
     <com.gc.materialdesign.views.Slider
@@ -20,10 +25,10 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="#1E88E5"
-        materialdesign:max="50"
-        materialdesign:min="0"
-        android:layout_alignBottom="@+id/vpPager"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        materialdesign:max="5"
+        materialdesign:min="-5"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>
 
