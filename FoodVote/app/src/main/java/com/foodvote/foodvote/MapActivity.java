@@ -113,7 +113,8 @@ public class MapActivity extends ActionBarActivity {
         nearbyPlaces.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                new LoadPlaces().execute(s.toString());
+                if (count > 2 && count < 14)
+                    new LoadPlaces().execute(s.toString());
             }
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count,
@@ -147,6 +148,7 @@ public class MapActivity extends ActionBarActivity {
 
 //                GooglePlaces places = new GooglePlaces();
                   startActivity(new Intent(getApplicationContext(), MapViewActivity.class));
+                  finish();
             }
         });
 
@@ -171,6 +173,7 @@ public class MapActivity extends ActionBarActivity {
                 // place refrence id used to get "Place full details"
                 in.putExtra(KEY_REFERENCE, reference);
                 startActivity(in);
+                finish();
             }
         });
     }
