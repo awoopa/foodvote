@@ -13,6 +13,7 @@ import com.foodvote.model.Place;
 import com.foodvote.model.Room;
 import com.foodvote.model.User;
 import com.foodvote.yelp.YelpAPI;
+import com.melnykov.fab.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +29,9 @@ public class MainActivity extends ActionBarActivity {
 
         //RecyclerView for list of rooms
         RecyclerView roomRV = (RecyclerView) findViewById(R.id.vote_list);
+        roomRV.addItemDecoration(new SimpleDividerItemDecoration(getApplicationContext()));         //divider
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);                   //FAB
+        fab.attachToRecyclerView(roomRV);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         roomRV.setLayoutManager(llm);
