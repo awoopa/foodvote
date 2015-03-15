@@ -10,4 +10,14 @@
         android:layout_height="match_parent"/>
 
 
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:text="START"
+        android:background="#f5f5f5"
+        android:elevation="8dp"
+        android:stateListAnimator="@anim/raise"
+        android:layout_marginBottom="32dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

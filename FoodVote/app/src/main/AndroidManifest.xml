@@ -88,6 +88,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.foodvote.foodvote.MainActivity" />
         </activity>
+        <activity
+            android:name=".CreateRoomActivity"
+            android:label="@string/title_activity_create_room"
+            android:parentActivityName=".KeycodeActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.foodvote.foodvote.KeycodeActivity" />
+        </activity>
     </application>
 
 </manifest>
