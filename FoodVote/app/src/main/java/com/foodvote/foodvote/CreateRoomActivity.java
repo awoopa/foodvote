@@ -1,18 +1,34 @@
 package com.foodvote.foodvote;
 
+import android.content.Intent;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.foodvote.foodvote.R;
 
 public class CreateRoomActivity extends ActionBarActivity {
 
+    TextView roomNameTextView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_room);
+
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
+
+        Intent intent = getIntent();
+        String roomName = intent.getStringExtra("name");
+
+        roomNameTextView = (TextView) findViewById(R.id.room_name_textview);
+        roomNameTextView.setText(roomName);
     }
 
 
@@ -37,4 +53,9 @@ public class CreateRoomActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void openMapActivity(View v) {
+        startActivity(new Intent(this, MapActivity.class));
+    }
+
 }
