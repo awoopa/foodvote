@@ -10,10 +10,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.astuetz.PagerSlidingTabStrip;
 import com.foodvote.foodvote.R;
 import com.foodvote.model.Place;
 
-public class VoteActivity extends FragmentActivity {
+public class VoteActivity extends ActionBarActivity {
 
     FragmentPagerAdapter adapterViewPager;
 
@@ -21,10 +22,18 @@ public class VoteActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vote);
+
+        //ViewPager for left and right cards
         ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
         FragmentManager fragmentManager = getSupportFragmentManager();
         adapterViewPager = new VotePagerAdapter(fragmentManager);
         vpPager.setAdapter(adapterViewPager);
+
+        //Tabs
+        PagerSlidingTabStrip tabs = (PagerSlidingTabStrip) findViewById(R.id.tabs);
+        tabs.setViewPager(vpPager);
+
+        getSupportActionBar().setElevation(0);
     }
 
 
@@ -75,6 +84,18 @@ public class VoteActivity extends FragmentActivity {
                     return cardB;
                 default:
                     return new Fragment();
+            }
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return "Place A";
+                case 1:
+                    return "Place B";
+                default:
+                    return "";
             }
         }
 
