@@ -81,7 +81,6 @@ public class KeycodeActivity extends ActionBarActivity {
 
     private void startLobbyActivity() {
         Intent intent = new Intent(this, LobbyActivity.class);
-        intent.putExtra("isCreator", true);
         startActivity(intent);
     }
 
