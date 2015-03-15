@@ -71,6 +71,7 @@ public class RadiusActivity extends ActionBarActivity {
         submitRadiusButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                onDoneButton();
                 socket.creatorSetup(name, radius, lat, lon, new Date(), idArray);
             }
         });
@@ -104,7 +105,7 @@ public class RadiusActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void onDoneButton(MenuItem menu) {
+    public void onDoneButton() {
         String name = getIntent().getStringExtra("name");
         double lat = (double) getIntent().getExtras().get("lat");
         double lon = (double) getIntent().getExtras().get("lon");
