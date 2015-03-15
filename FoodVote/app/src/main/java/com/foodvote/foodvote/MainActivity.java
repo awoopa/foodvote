@@ -1,6 +1,7 @@
 package com.foodvote.foodvote;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,8 +14,10 @@ import com.foodvote.model.User;
 import com.foodvote.yelp.YelpAPI;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.LinearLayoutManager;
+import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 //import com.footvote.foodvote.R;
 
@@ -34,7 +37,8 @@ public class MainActivity extends ActionBarActivity {
 
         //Testing value
         Room r1 = new Room("room1");
-        Room r2 = new Room("room2", new ArrayList<Place>(), new ArrayList<User>(), true, new Place());
+        Place p1 = new Place("123", "place1", "123", 1, new HashMap<String, String>(), "asdf");
+        Room r2 = new Room("room2", new ArrayList<Place>(), new ArrayList<User>(), true, p1);
         List<Room> roomList = new ArrayList<Room>();
         roomList.add(r1);
         roomList.add(r2);
