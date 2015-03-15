@@ -29,7 +29,7 @@ public class YelpSearchActivity extends ActionBarActivity {
 
             GPSTracker gps = new GPSTracker(this);
             AlertDialogManager alert = new AlertDialogManager();
-            LatLng location = new LatLng(43, -129);
+            LatLng location = new LatLng(49, -123);
 
             if (gps.canGetLocation()) {
                 location = new LatLng(gps.getLatitude(), gps.getLongitude());
@@ -42,7 +42,7 @@ public class YelpSearchActivity extends ActionBarActivity {
             YelpAPI yelp = new YelpAPI();
             String queryResults = yelp.searchForBusinessesByLocation(query, location);
             PlaceParser parser = new PlaceParser();
-            parser.parse(queryResults); 
+            parser.parse(queryResults);
         }
 
 
