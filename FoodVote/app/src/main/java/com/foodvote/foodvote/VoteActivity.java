@@ -37,6 +37,8 @@ public class VoteActivity extends ActionBarActivity {
 
     Slider slider;
 
+    int roundNum;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +66,7 @@ public class VoteActivity extends ActionBarActivity {
         socket.onNewRound(this, new SocketIO.OnNewRoundListener() {
             @Override
             public void onNewRound(int i, Round round) {
-                // TODO: this
+                roundNum = i;
                 String placeA = round.getPlaceA();
                 String placeB = round.getPlaceB();
                 int score = round.getScore();
@@ -98,6 +100,8 @@ public class VoteActivity extends ActionBarActivity {
                 startWinnerActivity(rounds, result);
             }
         });
+
+
     }
 
 
@@ -121,6 +125,7 @@ public class VoteActivity extends ActionBarActivity {
         }
         if (id == R.id.action_vote) {
             Log.d("Slider", Integer.toString(slider.getValue()));
+            socket.registerVote(roundNum, slider.getValue());
             return true;
         }
 
