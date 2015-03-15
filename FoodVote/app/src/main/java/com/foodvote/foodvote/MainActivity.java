@@ -52,7 +52,7 @@ public class MainActivity extends ActionBarActivity {
         roomRV.setAdapter(rla);
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        //getSupportActionBar().setLogo(R.drawable.icona);
+        getSupportActionBar().setLogo(R.drawable.ic_appbar_logo);
         getSupportActionBar().setDisplayUseLogoEnabled(true);
     }
 
