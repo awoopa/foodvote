@@ -94,7 +94,7 @@ public class VoteActivity extends ActionBarActivity {
         socket.onRoundEnded(this, new SocketIO.OnRoundEndedListener() {
             @Override
             public void onRoundEnded(int i, Round round) {
-                // TODO: these
+                setRound(round);
             }
         });
 
@@ -110,6 +110,10 @@ public class VoteActivity extends ActionBarActivity {
         Place A = pm.findPlaceById(round.getPlaceA());
         Place B = pm.findPlaceById(round.getPlaceB());
 
+        cardAName.setText(A.getName());
+        cardADesc.setText(makeDescText(A));
+        cardBName.setText(B.getName());
+        cardBDesc.setText(makeDescText(B));
     }
 
     @Override
@@ -198,5 +202,21 @@ public class VoteActivity extends ActionBarActivity {
         intent.putParcelableArrayListExtra("rounds", (ArrayList<Round>) rounds);
 
         startActivity(intent);
+    }
+
+    private String makeDescText(Place p) {
+        String descText = "";
+        for (String str : p.getDisplayAddress()) {
+            descText = descText + str + ", ";
+        }
+        if (!p.getDisplayPhone().equals("")) {
+            descText = descText + System.getProperty("line.separator") + p.getDisplayPhone();
+        }
+        if (p.getRating() != 0) {
+            Double rating = p.getRating() / 2.0;
+            String strRating = String.valueOf(rating);
+            descText = descText + System.getProperty("line.separator") + strRating + " out of 5 stars";
+        }
+        return descText;
     }
 }
