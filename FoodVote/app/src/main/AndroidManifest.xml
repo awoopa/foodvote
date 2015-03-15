@@ -96,6 +96,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.foodvote.foodvote.KeycodeActivity" />
         </activity>
+        <activity
+            android:name=".VoteActivity"
+            android:label="@string/title_activity_vote"
+            android:parentActivityName=".MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.foodvote.foodvote.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

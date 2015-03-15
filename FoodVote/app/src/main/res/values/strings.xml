@@ -14,4 +14,5 @@
     <string name="title_activity_results">ResultsActivity</string>
     <string name="title_activity_keycode">KeycodeActivity</string>
     <string name="title_activity_create_room">CreateRoomActivity</string>
+    <string name="title_activity_vote">VoteActivity</string>
 </resources>
