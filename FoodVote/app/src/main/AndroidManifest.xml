@@ -57,11 +57,6 @@
         <activity
             android:name=".MapViewActivity"
             android:label="@string/title_activity_map_view" >
-            android:name=".SuggestActivity"
-            android:label="@string/title_activity_suggest" >
-            <meta-data
-                android:name="android.app.default_searchable"
-                android:value=".YelpSearchActivity"/>
 
 
         </activity>
