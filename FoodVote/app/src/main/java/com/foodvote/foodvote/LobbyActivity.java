@@ -38,7 +38,6 @@ public class LobbyActivity extends ActionBarActivity {
 
         // create socket and listener
         socket = SocketIO.getInstance();
-        socket.connect();
 
         // enable button only if creator
         if (isCreator) {

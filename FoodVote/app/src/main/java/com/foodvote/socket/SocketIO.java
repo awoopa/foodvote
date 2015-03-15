@@ -425,7 +425,6 @@ public class SocketIO {
 
     public void destroy() {
         mSocket.disconnect();
-
     }
 
     public static Room parseRoomFromJSON(JSONObject json) {
