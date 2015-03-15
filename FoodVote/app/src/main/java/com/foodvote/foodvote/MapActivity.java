@@ -104,9 +104,6 @@ public class MapActivity extends ActionBarActivity {
         // Getting listview
         lv = (ListView) findViewById(R.id.place_list);
 
-        // button show on map
-        btnShowOnMap = (Button) findViewById(R.id.btn_show_map);
-
         EditText nearbyPlaces = (EditText) findViewById(R.id.nearby_places_edittext);
 
         // calling background Async task to load Google Places
@@ -154,27 +151,6 @@ public class MapActivity extends ActionBarActivity {
             }
         });
 
-        /** Button click event for shown on map */
-        btnShowOnMap.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-//                Intent i = new Intent(getApplicationContext(),
-//                        PlacesMapActivity.class);
-//                // Sending user current geo location
-//                i.putExtra("user_latitude", Double.toString(gps.getLatitude()));
-//                i.putExtra("user_longitude", Double.toString(gps.getLongitude()));
-//
-//                // passing near places to map activity
-//                i.putExtra("near_places", nearPlaces);
-//                // staring activity
-//                startActivity(i);
-
-//                GooglePlaces places = new GooglePlaces();
-                  startActivity(new Intent(getApplicationContext(), MapViewActivity.class));
-                  finish();
-            }
-        });
 
 
         /**
