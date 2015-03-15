@@ -1,18 +1,38 @@
 package com.foodvote.foodvote;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.foodvote.foodvote.R;
+import com.foodvote.model.Round;
+import com.foodvote.socket.SocketIO;
+
+import java.util.List;
 
 public class WinnerActivity extends ActionBarActivity {
+
+    Intent intent;
+
+    String result;
+    List<Round> rounds;
+
+    SocketIO socket;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_winner);
+
+        socket = SocketIO.getInstance();
+        socket.destroy();
+
+        intent = getIntent();
+        result = intent.getStringExtra("result");
+        rounds = intent.getParcelableArrayListExtra("rounds");
+
     }
 
 

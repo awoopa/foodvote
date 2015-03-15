@@ -26,15 +26,28 @@ public class LobbyActivity extends ActionBarActivity {
 
     Button startButton;
 
+    Intent intent = getIntent();
+    Boolean isCreator = intent.getBooleanExtra("isCreator", false);
+
+    SocketIO socket;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lobby);
 
         // create socket and listener
-        SocketIO socket = SocketIO.getInstance();
-        socket.connect();
+        socket = SocketIO.getInstance();
 
+        // enable button only if creator
+        if (isCreator) {
+            startButton.setEnabled(true);
+        } else {
+            startButton.setEnabled(false);
+            startButton.setText("Waiting for everyone...");
+        }
+
+        // all the sockets
         socket.onUserJoinedRoom(this, new SocketIO.OnUserJoinedRoomListener() {
             @Override
             public void onUserJoinedRoom(User new_user, List<User> users) {
@@ -45,7 +58,7 @@ public class LobbyActivity extends ActionBarActivity {
         socket.onVotingStart(this, new SocketIO.OnVotingStartListener() {
            @Override
             public void onVotingStart(Room room) {
-               // TODO: actually implement voting start activity switching
+               startVoteActivity();
            }
         });
 
@@ -53,7 +66,7 @@ public class LobbyActivity extends ActionBarActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Add round activity intent and stuff
+                creatorStart();
             }
         });
 
@@ -99,5 +112,17 @@ public class LobbyActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void startVoteActivity() {
+        Intent intent = new Intent(this, VoteActivity.class);
+        startActivity(intent);
+    }
+
+    private void creatorStart() {
+        if (isCreator) {
+            socket.creatorStart();
+            startVoteActivity();
+        }
     }
 }

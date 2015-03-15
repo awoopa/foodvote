@@ -77,6 +77,9 @@ public class KeycodeActivity extends ActionBarActivity {
     }
 
     private void startCreateRoomActivity() {
+        Intent intent = new Intent(this, CreateRoomActivity.class);
+        intent.putExtra("name", roomName);
+        startActivity(intent);
     }
 
     private void startLobbyActivity() {

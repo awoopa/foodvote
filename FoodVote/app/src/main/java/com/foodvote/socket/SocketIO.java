@@ -396,7 +396,7 @@ public class SocketIO {
 
                 Log.i("SocketIO", "Receive message: voting end");
                 final List<Round> rounds = new ArrayList<Round>();
-                final List<String> places = new ArrayList<String>();
+                final String place;
                 JSONObject jsonObject = (JSONObject) args[0];
                 try {
                     JSONArray roundsArray = jsonObject.getJSONArray("rounds");
@@ -406,10 +406,7 @@ public class SocketIO {
                         Round round = new Round(roundObj.getString("placeA"), roundObj.getString("placeB"));
                         rounds.add(round);
                     }
-                    for (int i = 0; i < placesArray.length(); i++) {
-                        String yelpId = placesArray.getString(i);
-                        places.add(yelpId);
-                    }
+                    place = placesArray.getString(0);
                 } catch (JSONException e) {
                     throw new RuntimeException(e.getMessage());
                 }
@@ -417,7 +414,7 @@ public class SocketIO {
                 activity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        listener.onVotingEnd(rounds, places);
+                        listener.onVotingEnd(rounds, place);
                     }
                 });
             }
@@ -428,7 +425,6 @@ public class SocketIO {
 
     public void destroy() {
         mSocket.disconnect();
-
     }
 
     public static Room parseRoomFromJSON(JSONObject json) {
@@ -498,7 +494,7 @@ public class SocketIO {
         public void onRoundEnded(int result, Round currentRound);
     }
     public interface OnVotingEndListener {
-        public void onVotingEnd(List<Round> rounds, List<String> places);
+        public void onVotingEnd(List<Round> rounds, String place);
     }
 
 }
