@@ -16,20 +16,10 @@ public class PlaceParser {
 
     private PlaceManager manager;
 
-    public void parse(Reader input) {
-        int intValueOfChar;
-        String jsonString = "";
+    public void parse(String input) {
 
         try {
-            while ((intValueOfChar = input.read()) != -1) {
-                jsonString += (char) intValueOfChar;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            JSONObject obj = new JSONObject(jsonString);
+            JSONObject obj = new JSONObject(input);
             JSONArray businesses = obj.getJSONArray("businesses");
                 for (int i = 0; i < businesses.length(); i++) {
                     JSONObject business = businesses.getJSONObject(i);

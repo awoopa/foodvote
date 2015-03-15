@@ -8,6 +8,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.foodvote.foodvote.R;
+import com.foodvote.google.AlertDialogManager;
+import com.foodvote.google.GPSTracker;
+import com.google.android.gms.maps.model.LatLng;
 
 public class YelpSearchActivity extends ActionBarActivity {
 
@@ -21,8 +24,21 @@ public class YelpSearchActivity extends ActionBarActivity {
     private void handleIntent(Intent intent) {
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            //use the query to search your data somehow
+
+            GPSTracker gps = new GPSTracker(this);
+            AlertDialogManager alert = new AlertDialogManager();
+            LatLng location = new LatLng(43, -129);
+
+            if (gps.canGetLocation()) {
+                location = new LatLng(gps.getLatitude(), gps.getLongitude());
+            } else {
+                alert.showAlertDialog(this, "GPS Status",
+                        "Couldn't get location information. Please enable GPS",
+                        false);
+            }
         }
+
+
     }
 
     @Override
