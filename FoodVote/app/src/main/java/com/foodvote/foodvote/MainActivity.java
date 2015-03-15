@@ -13,6 +13,7 @@ import com.foodvote.model.Place;
 import com.foodvote.model.Room;
 import com.foodvote.model.User;
 import com.foodvote.yelp.YelpAPI;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,11 +78,9 @@ public class MainActivity extends ActionBarActivity {
     public void openMap(View v) {
         YelpAPI yelpAPI = new YelpAPI();
 
-        String s = yelpAPI.searchForBusinessesByLocation("test", "Vancouver");
-        System.out.println(s);
+        String s = yelpAPI.searchForBusinessesByLocation("test", new LatLng(49, -123));
 
         s = yelpAPI.searchByBusinessId("coal-harbour-eye-centre-vancouver");
-        System.out.println(s);
 
         startActivity(new Intent(this, MapActivity.class));
     }

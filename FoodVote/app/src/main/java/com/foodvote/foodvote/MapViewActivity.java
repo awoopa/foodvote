@@ -28,7 +28,7 @@ public class MapViewActivity extends ActionBarActivity {
 
 
         // default values to vancouver
-        LatLng l = new LatLng(43, -129);
+        LatLng l = new LatLng(49, -123);
 
         // check if GPS location can get
         if (gps.canGetLocation()) {
