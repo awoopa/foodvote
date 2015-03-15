@@ -10,6 +10,8 @@ import android.view.MenuItem;
 import com.foodvote.foodvote.R;
 import com.foodvote.google.AlertDialogManager;
 import com.foodvote.google.GPSTracker;
+import com.foodvote.model.PlaceParser;
+import com.foodvote.yelp.YelpAPI;
 import com.google.android.gms.maps.model.LatLng;
 
 public class YelpSearchActivity extends ActionBarActivity {
@@ -36,6 +38,11 @@ public class YelpSearchActivity extends ActionBarActivity {
                         "Couldn't get location information. Please enable GPS",
                         false);
             }
+
+            YelpAPI yelp = new YelpAPI();
+            String queryResults = yelp.searchForBusinessesByLocation(query, location);
+            PlaceParser parser = new PlaceParser();
+            parser.parse(queryResults); 
         }
 
 

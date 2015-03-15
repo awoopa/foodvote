@@ -52,9 +52,6 @@ public class PlaceParser {
                     Place place = new Place(id, name, phone, displayPhone, rating, address,
                             displayAddress, imageURL);
                     manager.add(place);
-
-
-
                 }
         } catch (JSONException e) {
             e.printStackTrace();
