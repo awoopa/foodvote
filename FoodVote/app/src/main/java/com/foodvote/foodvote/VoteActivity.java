@@ -23,9 +23,11 @@ import com.foodvote.foodvote.R;
 
 import com.foodvote.model.Place;
 import com.foodvote.model.PlaceManager;
+import com.foodvote.model.PlaceParser;
 import com.foodvote.model.Round;
 import com.foodvote.model.User;
 import com.foodvote.socket.SocketIO;
+import com.foodvote.yelp.YelpAPI;
 import com.gc.materialdesign.views.Slider;
 
 import java.util.ArrayList;
@@ -81,6 +83,7 @@ public class VoteActivity extends ActionBarActivity {
             @Override
             public void onNewRound(int i, Round round) {
                 roundNum = i;
+                getPlaces(round);
             }
         });
 
@@ -94,7 +97,7 @@ public class VoteActivity extends ActionBarActivity {
         socket.onRoundEnded(this, new SocketIO.OnRoundEndedListener() {
             @Override
             public void onRoundEnded(int i, Round round) {
-                setRound(round);
+               return;
             }
         });
 
@@ -104,6 +107,22 @@ public class VoteActivity extends ActionBarActivity {
                 startWinnerActivity(rounds, result);
             }
         });
+    }
+
+    private void getPlaces(Round round) {
+        String idA = round.getPlaceA();
+        String idB = round.getPlaceB();
+        YelpAPI yelp = new YelpAPI();
+        String jsonA = yelp.searchByBusinessId(idA);
+        String jsonB = yelp.searchByBusinessId(idB);
+        PlaceParser pp = new PlaceParser();
+        pp.parse(jsonA);
+        Place A = pm.findPlaceById(idA);
+        Place B = pm.findPlaceById(idB);
+        cardAName.setText(A.getName());
+        cardADesc.setText(makeDescText(A));
+        cardBName.setText(B.getName());
+        cardBDesc.setText(makeDescText(B));
     }
 
     private void setRound(Round round) {
