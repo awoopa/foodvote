@@ -2,6 +2,8 @@ package com.foodvote.yelp;
 
 import android.os.AsyncTask;
 
+import com.google.android.gms.maps.model.LatLng;
+
 import org.scribe.builder.ServiceBuilder;
 import org.scribe.model.OAuthRequest;
 import org.scribe.model.Response;
@@ -61,12 +63,13 @@ public class YelpAPI {
    * for more info.
    * 
    * @param term <tt>String</tt> of the search term to be queried
-   * @param location <tt>String</tt> of the location
+   * @param ltlng  <tt>String</tt> of the location
    * @return <tt>String</tt> JSON Response
    */
-  public String searchForBusinessesByLocation(String term, String location) {
+  public String searchForBusinessesByLocation(String term, LatLng ltlng) {
       try {
-          return (new HTTPAsyncTask()).execute(term, location, "location").get();
+          String latlon = ltlng.latitude + "," + ltlng.longitude;
+          return (new HTTPAsyncTask()).execute(term, latlon, "location").get();
       } catch (InterruptedException e) {
           e.printStackTrace();
       } catch (ExecutionException e) {
@@ -143,7 +146,7 @@ public class YelpAPI {
             else {
                 request = createOAuthRequest(SEARCH_PATH);
                 request.addQuerystringParameter("term", params[0]);
-                request.addQuerystringParameter("location", params[1]);
+                request.addQuerystringParameter("cll", params[1]);
                 request.addQuerystringParameter("limit", String.valueOf(SEARCH_LIMIT));
             }
 

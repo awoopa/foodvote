@@ -11,8 +11,10 @@ import android.widget.TextView;
 
 import com.foodvote.google.AlertDialogManager;
 import com.foodvote.google.ConnectionDetector;
+import com.foodvote.google.GPSTracker;
 import com.foodvote.google.GooglePlaces;
 import com.foodvote.google.PlaceDetails;
+import com.google.android.gms.maps.model.LatLng;
 
 public class SinglePlaceActivity extends Activity {
     // flag for Internet connection status
@@ -38,17 +40,36 @@ public class SinglePlaceActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.single_place);
+        setContentView(R.layout.map_view);
 
-        Intent i = getIntent();
+        // creating GPS Class object
+        GPSTracker gps = new GPSTracker(this);
 
-        // Place referece id
-        String reference = i.getStringExtra(KEY_REFERENCE);
+        AlertDialogManager alert = new AlertDialogManager();
 
-        // Calling a Async Background thread
-        new LoadSinglePlaceDetails().execute(reference);
+
+        // default values to vancouver
+        LatLng l = new LatLng(43, -129);
+
+        // check if GPS location can get
+        if (gps.canGetLocation()) {
+            l = new LatLng(gps.getLatitude(), gps.getLongitude());
+        } else {
+            // Can't get user's current location
+            alert.showAlertDialog(SinglePlaceActivity.this, "GPS Status",
+                    "Couldn't get location information. Please enable GPS",
+                    false);
+            // stop executing code by return
+
+            Intent i = getIntent();
+
+            // Place referece id
+            String reference = i.getStringExtra(KEY_REFERENCE);
+
+            // Calling a Async Background thread
+            new LoadSinglePlaceDetails().execute(reference);
+        }
     }
 
 
