@@ -84,7 +84,7 @@ public class SearchResultsAdapter extends RecyclerView.Adapter<SearchResultsAdap
         if (p.getRating() != 0) {
             Double rating = p.getRating() / 2.0;
             String strRating = String.valueOf(rating);
-            descText = descText + System.getProperty("line.separator") + strRating + "out of 5 stars";
+            descText = descText + System.getProperty("line.separator") + strRating + " out of 5 stars";
         }
         return descText;
     }
