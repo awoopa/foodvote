@@ -1,18 +1,30 @@
 package com.foodvote.foodvote;
 
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import com.foodvote.foodvote.R;
+import com.foodvote.model.Place;
 
-public class VoteActivity extends ActionBarActivity {
+public class VoteActivity extends FragmentActivity {
+
+    FragmentPagerAdapter adapterViewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vote);
+        ViewPager vpPager = (ViewPager) findViewById(R.id.vpPager);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        adapterViewPager = new VotePagerAdapter(fragmentManager);
+        vpPager.setAdapter(adapterViewPager);
     }
 
 
@@ -36,5 +48,42 @@ public class VoteActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public static class VotePagerAdapter extends FragmentPagerAdapter {
+        private static int NUM_ITEMS = 2;
+        private VoteCardFragment cardA;
+        private VoteCardFragment cardB;
+
+        public VotePagerAdapter(FragmentManager fm) {
+            super(fm);
+            cardA = VoteCardFragment.newInstance();
+            cardB = VoteCardFragment.newInstance();
+        }
+
+        @Override
+        public int getCount() {
+            return NUM_ITEMS;
+        }
+
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return cardA;
+                case 1:
+                    return cardB;
+                default:
+                    return new Fragment();
+            }
+        }
+
+        public void setPlaceCardA(Place place) {
+            cardA.setPlace(place);
+        }
+
+        public void setPlaceCardB(Place place) {
+            cardB.setPlace(place);
+        }
     }
 }

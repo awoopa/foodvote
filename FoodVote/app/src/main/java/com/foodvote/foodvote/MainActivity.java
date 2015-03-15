@@ -105,4 +105,8 @@ public class MainActivity extends ActionBarActivity {
     public void openKeycode(View v) {
         startActivity(new Intent(this, KeycodeActivity.class));
     }
+
+    public void openVote(View v) {
+        startActivity(new Intent(this, VoteActivity.class));
+    }
 }

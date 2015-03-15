@@ -69,4 +69,13 @@
         android:clickable="true"
         android:onClick="openKeycode"/>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VoteActivity"
+        android:id="@+id/button5"
+        android:layout_above="@+id/button4"
+        android:layout_centerHorizontal="true"
+        android:onClick="openVote" />
+
 </RelativeLayout>
