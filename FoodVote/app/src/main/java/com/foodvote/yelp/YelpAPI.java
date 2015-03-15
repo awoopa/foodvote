@@ -11,6 +11,9 @@ import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.nio.charset.UnsupportedCharsetException;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -68,11 +71,15 @@ public class YelpAPI {
    */
   public String searchForBusinessesByLocation(String term, LatLng ltlng) {
       try {
-          String latlon = ltlng.latitude + "," + ltlng.longitude;
+          String latlon = URLEncoder.encode(ltlng.latitude + "," + ltlng.longitude, "UTF-8");
           return (new HTTPAsyncTask()).execute(term, latlon, "location").get();
       } catch (InterruptedException e) {
           e.printStackTrace();
       } catch (ExecutionException e) {
+          e.printStackTrace();
+      } catch (UnsupportedCharsetException e) {
+          e.printStackTrace();
+      } catch (UnsupportedEncodingException e) {
           e.printStackTrace();
       }
 
@@ -147,7 +154,9 @@ public class YelpAPI {
                 request = createOAuthRequest(SEARCH_PATH);
                 request.addQuerystringParameter("term", params[0]);
                 request.addQuerystringParameter("cll", params[1]);
+
                 request.addQuerystringParameter("limit", String.valueOf(SEARCH_LIMIT));
+                System.out.println(request);
             }
 
             service.signRequest(accessToken, request);

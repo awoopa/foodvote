@@ -41,4 +41,6 @@ public class PlaceManager {
         }
         throw new RuntimeException("No Places found in PlaceManager using id " + id);
     }
+
+    public int getSize() { return places.size(); }
 }

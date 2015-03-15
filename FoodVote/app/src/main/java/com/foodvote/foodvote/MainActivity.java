@@ -77,11 +77,11 @@ public class MainActivity extends ActionBarActivity {
     public void openMap(View v) {
         YelpAPI yelpAPI = new YelpAPI();
 
-        String s = yelpAPI.searchForBusinessesByLocation("test", "Vancouver");
-        System.out.println(s);
+        //String s = yelpAPI.searchForBusinessesByLocation("test", "Vancouver");
+        //System.out.println(s);
 
-        s = yelpAPI.searchByBusinessId("coal-harbour-eye-centre-vancouver");
-        System.out.println(s);
+        //s = yelpAPI.searchByBusinessId("coal-harbour-eye-centre-vancouver");
+        //System.out.println(s);
 
         startActivity(new Intent(this, MapActivity.class));
     }

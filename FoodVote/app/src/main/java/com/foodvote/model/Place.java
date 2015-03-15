@@ -62,4 +62,12 @@ public class Place {
     public String getImageURL() {
         return imageURL;
     }
+
+    public String getDisplayPhone() {
+        return displayPhone;
+    }
+
+    public ArrayList<String> getDisplayAddress() {
+        return displayAddress;
+    }
 }
