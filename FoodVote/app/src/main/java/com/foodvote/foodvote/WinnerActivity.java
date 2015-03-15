@@ -1,12 +1,18 @@
 package com.foodvote.foodvote;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.foodvote.foodvote.R;
+import com.foodvote.model.Place;
+import com.foodvote.model.PlaceManager;
 import com.foodvote.model.Round;
 import com.foodvote.socket.SocketIO;
 
@@ -19,6 +25,8 @@ public class WinnerActivity extends ActionBarActivity {
     String result;
     List<Round> rounds;
 
+    PlaceManager pm;
+
     SocketIO socket;
 
     @Override
@@ -29,10 +37,27 @@ public class WinnerActivity extends ActionBarActivity {
         socket = SocketIO.getInstance();
         socket.destroy();
 
+
+        pm = PlaceManager.getInstance();
         intent = getIntent();
         result = intent.getStringExtra("result");
         rounds = intent.getParcelableArrayListExtra("rounds");
 
+        final Place winner = pm.findPlaceById(result);
+
+        TextView tv = (TextView) findViewById(R.id.header);
+        tv.setText(winner.getName());
+
+        Button fab = (Button) findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String tel = "tel:" + winner.getPhone();
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse(tel));
+                startActivity(callIntent);
+            }
+        });
     }
 
 
